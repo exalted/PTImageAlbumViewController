@@ -39,6 +39,7 @@
 		505AE90E14ED6F7300BBFC05 /* NIPhotoScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 505AE90614ED6F7300BBFC05 /* NIPhotoScrollView.m */; };
 		505AE90F14ED6F7300BBFC05 /* NIPhotoScrubberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 505AE90A14ED6F7300BBFC05 /* NIPhotoScrubberView.m */; };
 		505AE91014ED6F7300BBFC05 /* NIToolbarPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505AE90C14ED6F7300BBFC05 /* NIToolbarPhotoViewController.m */; };
+		505AE92E14ED707500BBFC05 /* PTImageAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505AE92D14ED707500BBFC05 /* PTImageAlbumViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -121,6 +122,8 @@
 		505AE90A14ED6F7300BBFC05 /* NIPhotoScrubberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPhotoScrubberView.m; path = ../../Libraries/nimbus/src/photos/src/NIPhotoScrubberView.m; sourceTree = "<group>"; };
 		505AE90B14ED6F7300BBFC05 /* NIToolbarPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIToolbarPhotoViewController.h; path = ../../Libraries/nimbus/src/photos/src/NIToolbarPhotoViewController.h; sourceTree = "<group>"; };
 		505AE90C14ED6F7300BBFC05 /* NIToolbarPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIToolbarPhotoViewController.m; path = ../../Libraries/nimbus/src/photos/src/NIToolbarPhotoViewController.m; sourceTree = "<group>"; };
+		505AE92C14ED707500BBFC05 /* PTImageAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTImageAlbumViewController.h; sourceTree = "<group>"; };
+		505AE92D14ED707500BBFC05 /* PTImageAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTImageAlbumViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +193,8 @@
 		505AE89914ED64ED00BBFC05 /* PTImageAlbumViewController */ = {
 			isa = PBXGroup;
 			children = (
+				505AE92C14ED707500BBFC05 /* PTImageAlbumViewController.h */,
+				505AE92D14ED707500BBFC05 /* PTImageAlbumViewController.m */,
 			);
 			name = PTImageAlbumViewController;
 			path = ../../PTImageAlbumViewController;
@@ -393,6 +398,7 @@
 				505AE90E14ED6F7300BBFC05 /* NIPhotoScrollView.m in Sources */,
 				505AE90F14ED6F7300BBFC05 /* NIPhotoScrubberView.m in Sources */,
 				505AE91014ED6F7300BBFC05 /* NIToolbarPhotoViewController.m in Sources */,
+				505AE92E14ED707500BBFC05 /* PTImageAlbumViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
