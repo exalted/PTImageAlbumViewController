@@ -8,6 +8,12 @@
 
 #import "NIToolbarPhotoViewController.h"
 
-@interface PTImageAlbumViewController : NIToolbarPhotoViewController
+#import "PTImageAlbumViewDataSource.h"
+
+@class PTImageAlbumView;
+
+@interface PTImageAlbumViewController : NIToolbarPhotoViewController <PTImageAlbumViewDataSource>
+
+@property (nonatomic, retain) PTImageAlbumView *imageAlbumView;
 
 @end

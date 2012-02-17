@@ -8,13 +8,22 @@
 
 #import "PTImageAlbumViewController.h"
 
+#import "PTImageAlbumView.h"
+
+@interface PTImageAlbumViewController () <NIPhotoAlbumScrollViewDataSource>
+
+@end
+
 @implementation PTImageAlbumViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+@synthesize imageAlbumView = _imageAlbumView;
+
+- (id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:nil bundle:nil];
     if (self) {
         // Custom initialization
+        _imageAlbumView = [[PTImageAlbumView alloc] init];
     }
     return self;
 }
@@ -36,13 +45,24 @@
 }
 */
 
-/*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.imageAlbumView.imageAlbumDataSource = self;
+    
+    // Internal
+    self.photoAlbumView.dataSource = self;
+
+    self.scrubberIsEnabled = NO;
+
+    // Set the default loading image.
+    self.photoAlbumView.loadingImage = [UIImage imageWithContentsOfFile:
+                                        NIPathForBundleResource(nil, @"NimbusPhotos.bundle/gfx/default.png")];
+    
+    [self.photoAlbumView reloadData];
 }
-*/
 
 - (void)viewDidUnload
 {
@@ -51,10 +71,53 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+#pragma mark - NIPhotoAlbumScrollViewDataSource
+
+- (UIImage *)photoAlbumScrollView:(NIPhotoAlbumScrollView *)photoAlbumScrollView
+                     photoAtIndex:(NSInteger)photoIndex
+                        photoSize:(NIPhotoScrollViewPhotoSize *)photoSize
+                        isLoading:(BOOL *)isLoading
+          originalPhotoDimensions:(CGSize *)originalPhotoDimensions
 {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    UIImage *img = [self.imageAlbumView.imageAlbumDataSource imageAlbumView:self.imageAlbumView imageAtIndex:photoIndex];
+    
+    *originalPhotoDimensions = CGSizeMake(img.size.width, img.size.height);
+    *photoSize = NIPhotoScrollViewPhotoSizeOriginal;
+
+    return img;
+}
+
+/*
+- (void)photoAlbumScrollView:(NIPhotoAlbumScrollView *)photoAlbumScrollView stopLoadingPhotoAtIndex:(NSInteger)photoIndex
+{
+}
+*/
+
+#pragma mark - NIPagingScrollViewDataSource
+
+- (NSInteger)numberOfPagesInPagingScrollView:(NIPagingScrollView *)pagingScrollView
+{
+    return [self.imageAlbumView.imageAlbumDataSource numberOfImagesInAlbumView:self.imageAlbumView];
+}
+
+- (UIView<NIPagingScrollViewPage> *)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageViewForIndex:(NSInteger)pageIndex
+{
+    // TODO enhance by replacing it with a captioned photo view
+    return [self.photoAlbumView pagingScrollView:pagingScrollView pageViewForIndex:pageIndex];
+}
+
+#pragma mark - PTImageAlbumViewDataSource
+
+- (NSInteger)numberOfImagesInAlbumView:(PTImageAlbumView *)imageAlbumView
+{
+    NSAssert(NO, @"missing required method implementation 'numberOfItemsInImageAlbumView:'");
+    return -1;
+}
+
+- (UIImage *)imageAlbumView:(PTImageAlbumView *)imageAlbumView imageAtIndex:(NSInteger)index
+{
+    NSAssert(NO, @"missing required method implementation 'imageAlbumView:imageAtIndex:'");
+    return nil;
 }
 
 @end
