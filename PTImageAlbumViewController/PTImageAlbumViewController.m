@@ -10,7 +10,9 @@
 
 #import "PTImageAlbumView.h"
 
-@interface PTImageAlbumViewController () <NIPhotoAlbumScrollViewDataSource>
+@interface PTImageAlbumViewController () <NIPhotoAlbumScrollViewDataSource, NIPhotoScrubberViewDataSource>
+
+- (UIImage *)loadThumbnailImageAtIndex:(NSInteger)index;
 
 @end
 
@@ -54,14 +56,20 @@
     
     // Internal
     self.photoAlbumView.dataSource = self;
-
-    self.scrubberIsEnabled = NO;
-
-    // Set the default loading image.
+    self.photoScrubberView.dataSource = self;
+    
+    // Set the default loading image
     self.photoAlbumView.loadingImage = [UIImage imageWithContentsOfFile:
                                         NIPathForBundleResource(nil, @"NimbusPhotos.bundle/gfx/default.png")];
-    
+
+    [self.imageAlbumView reloadData];
     [self.photoAlbumView reloadData];
+
+    // Load all thumbnails
+    for (NSInteger i = 0; i < [self.imageAlbumView numberOfImages]; i++) {
+        [self loadThumbnailImageAtIndex:i];
+    }
+    [self.photoScrubberView reloadData];
 }
 
 - (void)viewDidUnload
@@ -69,6 +77,37 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+
+    self.imageAlbumView = nil;
+}
+
+#pragma mark - Private
+
+- (UIImage *)loadThumbnailImageAtIndex:(NSInteger)index
+{
+    NSString *photoIndexKey = [NSString stringWithFormat:@"%d", index];
+    
+    UIImage *image = [self.highQualityImageCache objectWithName:photoIndexKey];
+    if (image == nil) {
+        [self requestImageFromSource:[self.imageAlbumView thumbnailSourceForImageAtIndex:index]
+                           photoSize:NIPhotoScrollViewPhotoSizeThumbnail
+                          photoIndex:index];
+    }
+    
+    return image;
+}
+
+#pragma mark - NIPagingScrollViewDataSource
+
+- (NSInteger)numberOfPagesInPagingScrollView:(NIPagingScrollView *)pagingScrollView
+{
+    return [self.imageAlbumView numberOfImages];
+}
+
+- (UIView<NIPagingScrollViewPage> *)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageViewForIndex:(NSInteger)pageIndex
+{
+    // TODO enhance by replacing it with a captioned photo view
+    return [self.photoAlbumView pagingScrollView:pagingScrollView pageViewForIndex:pageIndex];
 }
 
 #pragma mark - NIPhotoAlbumScrollViewDataSource
@@ -79,31 +118,59 @@
                         isLoading:(BOOL *)isLoading
           originalPhotoDimensions:(CGSize *)originalPhotoDimensions
 {
-    UIImage *img = [self.imageAlbumView.imageAlbumDataSource imageAlbumView:self.imageAlbumView imageAtIndex:photoIndex];
+    // Let the photo album view know how large the photo will be once it's fully loaded.
+    *originalPhotoDimensions = [self.imageAlbumView originalSizeForImageAtIndex:photoIndex];
     
-    *originalPhotoDimensions = CGSizeMake(img.size.width, img.size.height);
-    *photoSize = NIPhotoScrollViewPhotoSizeOriginal;
+    NSString *photoIndexKey = [NSString stringWithFormat:@"%d", photoIndex];
+    
+    UIImage *image = [self.highQualityImageCache objectWithName:photoIndexKey];
+    if (image) {
+        *photoSize = NIPhotoScrollViewPhotoSizeOriginal;
+    }
+    else {
+        [self requestImageFromSource:[self.imageAlbumView originalSourceForImageAtIndex:photoIndex]
+                           photoSize:NIPhotoScrollViewPhotoSizeOriginal
+                          photoIndex:photoIndex];
+        *isLoading = YES;
 
-    return img;
+        // Try to return the thumbnail image if we can.
+        image = [self.thumbnailImageCache objectWithName:photoIndexKey];
+        if (image) {
+            *photoSize = NIPhotoScrollViewPhotoSizeThumbnail;
+        }
+        else {
+            // Load the thumbnail as well.
+            [self requestImageFromSource:[self.imageAlbumView thumbnailSourceForImageAtIndex:photoIndex]
+                               photoSize:NIPhotoScrollViewPhotoSizeThumbnail
+                              photoIndex:photoIndex];
+        }
+    }
+    
+    return image;
 }
 
-/*
 - (void)photoAlbumScrollView:(NIPhotoAlbumScrollView *)photoAlbumScrollView stopLoadingPhotoAtIndex:(NSInteger)photoIndex
 {
+    for (NIOperation *op in self.queue.operations) {
+        if (op.tag == photoIndex) {
+            [op cancel];
+            
+            [self didCancelRequestWithPhotoSize:NIPhotoScrollViewPhotoSizeOriginal
+                                     photoIndex:photoIndex];
+        }
+    }
 }
-*/
 
-#pragma mark - NIPagingScrollViewDataSource
+#pragma mark - NIPhotoScrubberViewDataSource
 
-- (NSInteger)numberOfPagesInPagingScrollView:(NIPagingScrollView *)pagingScrollView
+- (NSInteger)numberOfPhotosInScrubberView:(NIPhotoScrubberView *)photoScrubberView
 {
-    return [self.imageAlbumView.imageAlbumDataSource numberOfImagesInAlbumView:self.imageAlbumView];
+    return [self.imageAlbumView numberOfImages];
 }
 
-- (UIView<NIPagingScrollViewPage> *)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageViewForIndex:(NSInteger)pageIndex
+- (UIImage *)photoScrubberView:(NIPhotoScrubberView *)photoScrubberView thumbnailAtIndex:(NSInteger)thumbnailIndex
 {
-    // TODO enhance by replacing it with a captioned photo view
-    return [self.photoAlbumView pagingScrollView:pagingScrollView pageViewForIndex:pageIndex];
+    return [self loadThumbnailImageAtIndex:thumbnailIndex];
 }
 
 #pragma mark - PTImageAlbumViewDataSource
@@ -114,9 +181,21 @@
     return -1;
 }
 
-- (UIImage *)imageAlbumView:(PTImageAlbumView *)imageAlbumView imageAtIndex:(NSInteger)index
+- (NSString *)imageAlbumView:(PTImageAlbumView *)imageAlbumView sourceForImageAtIndex:(NSInteger)index
 {
-    NSAssert(NO, @"missing required method implementation 'imageAlbumView:imageAtIndex:'");
+    NSAssert(NO, @"missing required method implementation 'imageAlbumView:sourceForImageAtIndex:'");
+    return nil;
+}
+
+- (CGSize)imageAlbumView:(PTImageAlbumView *)imageAlbumView sizeForImageAtIndex:(NSInteger)index
+{
+    NSAssert(NO, @"missing required method implementation 'imageAlbumView:sizeForImageAtIndex:'");
+    return CGSizeZero;
+}
+
+- (NSString *)imageAlbumView:(PTImageAlbumView *)imageAlbumView sourceForThumbnailImageAtIndex:(NSInteger)index
+{
+    NSAssert(NO, @"missing required method implementation 'imageAlbumView:sourceForThumbnailImageAtIndex:'");
     return nil;
 }
 

@@ -6,13 +6,13 @@
 //  Copyright (c) 2012 Apex-net srl. All rights reserved.
 //
 
-#import "NIToolbarPhotoViewController.h"
+#import "NetworkPhotoAlbumViewController.h"
 
 #import "PTImageAlbumViewDataSource.h"
 
 @class PTImageAlbumView;
 
-@interface PTImageAlbumViewController : NIToolbarPhotoViewController <PTImageAlbumViewDataSource>
+@interface PTImageAlbumViewController : NetworkPhotoAlbumViewController <PTImageAlbumViewDataSource>
 
 @property (nonatomic, retain) PTImageAlbumView *imageAlbumView;
 

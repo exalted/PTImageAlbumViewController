@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5012A8E314F2767B00BFF30D /* NetworkPhotoAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5012A8E214F2767B00BFF30D /* NetworkPhotoAlbumViewController.m */; };
 		505AE87F14ED648D00BBFC05 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 505AE87E14ED648D00BBFC05 /* UIKit.framework */; };
 		505AE88114ED648D00BBFC05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 505AE88014ED648D00BBFC05 /* Foundation.framework */; };
 		505AE88314ED648D00BBFC05 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 505AE88214ED648D00BBFC05 /* CoreGraphics.framework */; };
@@ -46,6 +47,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5012A8E114F2767B00BFF30D /* NetworkPhotoAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkPhotoAlbumViewController.h; path = ../../Libraries/nimbus/examples/photos/NetworkPhotoAlbums/src/NetworkPhotoAlbumViewController.h; sourceTree = "<group>"; };
+		5012A8E214F2767B00BFF30D /* NetworkPhotoAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkPhotoAlbumViewController.m; path = ../../Libraries/nimbus/examples/photos/NetworkPhotoAlbums/src/NetworkPhotoAlbumViewController.m; sourceTree = "<group>"; };
 		505AE87A14ED648D00BBFC05 /* AlbumDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlbumDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		505AE87E14ED648D00BBFC05 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		505AE88014ED648D00BBFC05 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -149,6 +152,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5012A8DF14F2761700BFF30D /* NetworkPhotoAlbumViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5012A8E114F2767B00BFF30D /* NetworkPhotoAlbumViewController.h */,
+				5012A8E214F2767B00BFF30D /* NetworkPhotoAlbumViewController.m */,
+			);
+			name = NetworkPhotoAlbumViewController;
+			sourceTree = "<group>";
+		};
 		505AE86F14ED648D00BBFC05 = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				505AE8AE14ED6F0C00BBFC05 /* Nimbus */,
+				5012A8DF14F2761700BFF30D /* NetworkPhotoAlbumViewController */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -417,6 +430,7 @@
 				505AE92E14ED707500BBFC05 /* PTImageAlbumViewController.m in Sources */,
 				508F81F614EE763A0002881F /* PTDemoViewController.m in Sources */,
 				508F7CEA14EE9318000140D6 /* PTImageAlbumView.m in Sources */,
+				5012A8E314F2767B00BFF30D /* NetworkPhotoAlbumViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
