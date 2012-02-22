@@ -1,3 +1,6 @@
 [submodule "Libraries/nimbus"]
 	path = Libraries/nimbus
 	url = git://github.com/jverkoey/nimbus.git
+[submodule "Libraries/SDURLCache"]
+	path = Libraries/SDURLCache
+	url = git://github.com/rs/SDURLCache.git
