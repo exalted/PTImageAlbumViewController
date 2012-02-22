@@ -44,6 +44,7 @@
 		508F7CE714EE8C8E000140D6 /* NimbusPhotos.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 508F7CE614EE8C8E000140D6 /* NimbusPhotos.bundle */; };
 		508F7CEA14EE9318000140D6 /* PTImageAlbumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 508F7CE914EE9318000140D6 /* PTImageAlbumView.m */; };
 		508F81F614EE763A0002881F /* PTDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 508F81F514EE763A0002881F /* PTDemoViewController.m */; };
+		50918CDA14F50E900005AD9C /* SDURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 50918CD914F50E900005AD9C /* SDURLCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,6 +137,8 @@
 		508F7CEB14EE93C5000140D6 /* PTImageAlbumViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTImageAlbumViewDataSource.h; sourceTree = "<group>"; };
 		508F81F414EE763A0002881F /* PTDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTDemoViewController.h; sourceTree = "<group>"; };
 		508F81F514EE763A0002881F /* PTDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTDemoViewController.m; sourceTree = "<group>"; };
+		50918CD814F50E900005AD9C /* SDURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDURLCache.h; path = ../../Libraries/SDURLCache/SDURLCache.h; sourceTree = "<group>"; };
+		50918CD914F50E900005AD9C /* SDURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDURLCache.m; path = ../../Libraries/SDURLCache/SDURLCache.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +234,7 @@
 			children = (
 				505AE8AE14ED6F0C00BBFC05 /* Nimbus */,
 				5012A8DF14F2761700BFF30D /* NetworkPhotoAlbumViewController */,
+				50918CD614F50E700005AD9C /* SDURLCache */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -336,6 +340,15 @@
 			name = Core;
 			sourceTree = "<group>";
 		};
+		50918CD614F50E700005AD9C /* SDURLCache */ = {
+			isa = PBXGroup;
+			children = (
+				50918CD814F50E900005AD9C /* SDURLCache.h */,
+				50918CD914F50E900005AD9C /* SDURLCache.m */,
+			);
+			name = SDURLCache;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -431,6 +444,7 @@
 				508F81F614EE763A0002881F /* PTDemoViewController.m in Sources */,
 				508F7CEA14EE9318000140D6 /* PTImageAlbumView.m in Sources */,
 				5012A8E314F2767B00BFF30D /* NetworkPhotoAlbumViewController.m in Sources */,
+				50918CDA14F50E900005AD9C /* SDURLCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

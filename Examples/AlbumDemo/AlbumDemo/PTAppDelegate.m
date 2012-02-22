@@ -8,6 +8,8 @@
 
 #import "PTAppDelegate.h"
 
+#import "SDURLCache.h"
+
 #import "PTDemoViewController.h"
 
 @implementation PTAppDelegate
@@ -23,6 +25,24 @@
     // Override point for customization after application launch.
     
     ////////////////////////////////////////////////////////////////////////////
+    
+    /*
+     * Optional: do some disk caching (don't exaggerate, this isn't data persistence),
+     * for less network requests so ideally content is always there
+     */
+    
+    // Nimbus implements its own in-memory cache for network images. Because of
+    // this we don't allocate any memory for NSURLCache.
+    static const NSUInteger kMemoryCapacity = 0;
+    static const NSUInteger kDiskCapacity = 1024*1024*50; // 50MB disk cache
+    SDURLCache *urlCache = [[SDURLCache alloc] initWithMemoryCapacity:kMemoryCapacity
+                                                         diskCapacity:kDiskCapacity
+                                                             diskPath:[SDURLCache defaultCachePath]];
+    [NSURLCache setSharedURLCache:urlCache];
+    
+    /*
+     * This is how we alloc & init a PTImageAlbumViewController instance
+     */
     
     self.viewController = [[PTDemoViewController alloc] init];
     self.navController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
