@@ -47,7 +47,7 @@
 
 - (void)reloadData
 {
-    NSInteger numberOfImages =[self.imageAlbumDataSource numberOfImagesInAlbumView:self];
+    NSInteger numberOfImages = [self.imageAlbumDataSource numberOfImagesInAlbumView:self];
     
     // Create an images' info array for reusing asking data source for its capacity
     self.data = [NSMutableArray arrayWithCapacity:numberOfImages];
