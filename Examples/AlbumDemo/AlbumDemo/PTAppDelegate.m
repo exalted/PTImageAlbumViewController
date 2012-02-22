@@ -27,8 +27,9 @@
     ////////////////////////////////////////////////////////////////////////////
     
     /*
-     * Optional: do some disk caching (don't exaggerate, this isn't data persistence),
-     * for less network requests so ideally content is always there
+     * Optional: do some disk caching (don't exaggerate though, because this
+     * isn't data persistence): less network requests so that content ideally
+     * is always there.
      */
     
     // Nimbus implements its own in-memory cache for network images. Because of
