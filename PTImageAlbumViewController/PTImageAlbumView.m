@@ -8,7 +8,7 @@
 
 #import "PTImageAlbumView.h"
 
-#import "PTImageAlbumViewController.h"
+#import "PTImageAlbumViewDataSource.h"
 
 @interface PTImageAlbumView ()
 
@@ -42,17 +42,18 @@
 
 - (NSString *)thumbnailSourceForImageAtIndex:(NSInteger)index
 {
-    return [[self.data objectAtIndex:index] objectForKey:@"thumbnail"];
+    return [[self.data objectAtIndex:index] objectForKey:@"thumbnailSource"];
 }
 
 - (void)reloadData
 {
+    // Ask data source for number of images
     NSInteger numberOfImages = [self.imageAlbumDataSource numberOfImagesInAlbumView:self];
     
-    // Create an images' info array for reusing asking data source for its capacity
+    // Create an images' info array for reusing
     self.data = [NSMutableArray arrayWithCapacity:numberOfImages];
     for (NSInteger i = 0; i < numberOfImages; i++) {
-        // Ask datasource for 'source' and 'size' for current image
+        // Ask datasource for various data
         NSString *originalImageSource = [self.imageAlbumDataSource imageAlbumView:self sourceForImageAtIndex:i];
         CGSize originalImageSize = [self.imageAlbumDataSource imageAlbumView:self sizeForImageAtIndex:i];
         NSString *thumbnailImageSource = [self.imageAlbumDataSource imageAlbumView:self sourceForThumbnailImageAtIndex:i];
@@ -60,7 +61,7 @@
         [self.data addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                               originalImageSource, @"source",
                               [NSValue valueWithCGSize:originalImageSize], @"size",
-                              thumbnailImageSource, @"thumbnail",
+                              thumbnailImageSource, @"thumbnailSource",
                               nil]];
     }
 }

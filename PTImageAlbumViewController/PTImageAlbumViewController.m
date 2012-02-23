@@ -26,6 +26,7 @@
     if (self) {
         // Custom initialization
         _imageAlbumView = [[PTImageAlbumView alloc] init];
+        _imageAlbumView.imageAlbumDataSource = self;
     }
     return self;
 }
@@ -51,8 +52,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.imageAlbumView.imageAlbumDataSource = self;
     
     // Internal
     self.photoAlbumView.dataSource = self;
@@ -89,7 +88,23 @@
     
     UIImage *image = [self.highQualityImageCache objectWithName:photoIndexKey];
     if (image == nil) {
-        [self requestImageFromSource:[self.imageAlbumView thumbnailSourceForImageAtIndex:index]
+        NSString *source = [self.imageAlbumView thumbnailSourceForImageAtIndex:index];
+
+        // TODO remove duplicate -----------------------------------------------
+        NSURL *url = nil;
+        
+        // Check for file URLs.
+        if ([source hasPrefix:@"/"]) {
+            // If the url starts with / then it's likely a file URL, so treat it accordingly.
+            url = [NSURL fileURLWithPath:source];
+        }
+        else {
+            // Otherwise we assume it's a regular URL.
+            url = [NSURL URLWithString:source];
+        }
+        // ---------------------------------------------------------------------
+        
+        [self requestImageFromSource:[url absoluteString]
                            photoSize:NIPhotoScrollViewPhotoSizeThumbnail
                           photoIndex:index];
     }
@@ -128,7 +143,23 @@
         *photoSize = NIPhotoScrollViewPhotoSizeOriginal;
     }
     else {
-        [self requestImageFromSource:[self.imageAlbumView originalSourceForImageAtIndex:photoIndex]
+        NSString *source = [self.imageAlbumView originalSourceForImageAtIndex:photoIndex];
+
+        // TODO remove duplicate -----------------------------------------------
+        NSURL *url = nil;
+        
+        // Check for file URLs.
+        if ([source hasPrefix:@"/"]) {
+            // If the url starts with / then it's likely a file URL, so treat it accordingly.
+            url = [NSURL fileURLWithPath:source];
+        }
+        else {
+            // Otherwise we assume it's a regular URL.
+            url = [NSURL URLWithString:source];
+        }
+        // ---------------------------------------------------------------------
+        
+        [self requestImageFromSource:[url absoluteString]
                            photoSize:NIPhotoScrollViewPhotoSizeOriginal
                           photoIndex:photoIndex];
         *isLoading = YES;
@@ -140,7 +171,24 @@
         }
         else {
             // Load the thumbnail as well.
-            [self requestImageFromSource:[self.imageAlbumView thumbnailSourceForImageAtIndex:photoIndex]
+            
+            NSString *source = [self.imageAlbumView thumbnailSourceForImageAtIndex:photoIndex];
+
+            // TODO remove duplicate -----------------------------------------------
+            NSURL *url = nil;
+            
+            // Check for file URLs.
+            if ([source hasPrefix:@"/"]) {
+                // If the url starts with / then it's likely a file URL, so treat it accordingly.
+                url = [NSURL fileURLWithPath:source];
+            }
+            else {
+                // Otherwise we assume it's a regular URL.
+                url = [NSURL URLWithString:source];
+            }
+            // ---------------------------------------------------------------------
+            
+            [self requestImageFromSource:[url absoluteString]
                                photoSize:NIPhotoScrollViewPhotoSizeThumbnail
                               photoIndex:photoIndex];
         }
