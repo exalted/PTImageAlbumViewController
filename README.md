@@ -64,7 +64,7 @@ Easy As A Roller Coaster ;-)
 
 #import "YourAwesomeViewController.h"
 
-@implementation PTDemoViewController
+@implementation YourAwesomeViewController
 
 //...
 
