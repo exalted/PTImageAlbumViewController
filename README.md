@@ -37,3 +37,56 @@ $ git submodule init
 $ git submodule update
 $ open Examples/AlbumDemo/AlbumDemo.xcodeproj
 ```
+
+Easy As A Roller Coaster ;-)
+============================
+
+1. Create a new subclass of `PTImageAlbumViewController`, say `YourAwesomeViewController`
+2. Implement `PTImageAlbumViewDataSource`
+  * Number of images
+  * Path or URL for each of'em (high–definition and thumbnail)
+  * Size (width & height) for high–definition images
+
+```objective-c
+// YourAwesomeViewController.h
+
+#import "PTImageAlbumViewController.h"
+
+@interface YourAwesomeViewController : PTImageAlbumViewController
+
+// ...
+
+@end
+```
+
+```objective-c
+// YourAwesomeViewController.m
+
+#import "YourAwesomeViewController.h"
+
+@implementation PTDemoViewController
+
+//...
+
+#pragma mark - PTImageAlbumViewDataSource
+
+- (NSInteger)numberOfImagesInAlbumView:(PTImageAlbumView *)imageAlbumView {
+    #warning missing implementation
+}
+
+- (NSString *)imageAlbumView:(PTImageAlbumView *)imageAlbumView sourceForImageAtIndex:(NSInteger)index {
+    #warning missing implementation
+}
+
+- (CGSize)imageAlbumView:(PTImageAlbumView *)imageAlbumView sizeForImageAtIndex:(NSInteger)index {
+    #warning missing implementation
+}
+
+- (NSString *)imageAlbumView:(PTImageAlbumView *)imageAlbumView sourceForThumbnailImageAtIndex:(NSInteger)index {
+    #warning missing implementation
+}
+
+//...
+
+@end
+```
