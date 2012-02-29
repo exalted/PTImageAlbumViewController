@@ -80,6 +80,17 @@
     self.imageAlbumView = nil;
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return interfaceOrientation == UIInterfaceOrientationPortrait || UIInterfaceOrientationIsLandscape(interfaceOrientation);
+    }
+    
+    return YES;
+}
+
 #pragma mark - Private
 
 - (UIImage *)loadThumbnailImageAtIndex:(NSInteger)index
