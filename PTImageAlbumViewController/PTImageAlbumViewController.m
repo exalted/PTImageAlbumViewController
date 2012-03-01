@@ -101,7 +101,8 @@
     if (image == nil) {
         NSString *source = [self.imageAlbumView thumbnailSourceForImageAtIndex:index];
 
-        // TODO remove duplicate -----------------------------------------------
+        // TODO remove duplicate
+        // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         NSURL *url = nil;
         
         // Check for file URLs.
@@ -113,7 +114,7 @@
             // Otherwise we assume it's a regular URL.
             url = [NSURL URLWithString:source];
         }
-        // ---------------------------------------------------------------------
+        // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         
         [self requestImageFromSource:[url absoluteString]
                            photoSize:NIPhotoScrollViewPhotoSizeThumbnail
@@ -156,7 +157,8 @@
     else {
         NSString *source = [self.imageAlbumView originalSourceForImageAtIndex:photoIndex];
 
-        // TODO remove duplicate -----------------------------------------------
+        // TODO remove duplicate
+        // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         NSURL *url = nil;
         
         // Check for file URLs.
@@ -168,7 +170,7 @@
             // Otherwise we assume it's a regular URL.
             url = [NSURL URLWithString:source];
         }
-        // ---------------------------------------------------------------------
+        // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         
         [self requestImageFromSource:[url absoluteString]
                            photoSize:NIPhotoScrollViewPhotoSizeOriginal
@@ -185,7 +187,8 @@
             
             NSString *source = [self.imageAlbumView thumbnailSourceForImageAtIndex:photoIndex];
 
-            // TODO remove duplicate -----------------------------------------------
+            // TODO remove duplicate
+            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
             NSURL *url = nil;
             
             // Check for file URLs.
@@ -197,7 +200,7 @@
                 // Otherwise we assume it's a regular URL.
                 url = [NSURL URLWithString:source];
             }
-            // ---------------------------------------------------------------------
+            // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
             
             [self requestImageFromSource:[url absoluteString]
                                photoSize:NIPhotoScrollViewPhotoSizeThumbnail
