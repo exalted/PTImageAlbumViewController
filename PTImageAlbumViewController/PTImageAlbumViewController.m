@@ -12,7 +12,7 @@
 
 @interface PTImageAlbumViewController () <NIPhotoAlbumScrollViewDataSource, NIPhotoScrubberViewDataSource>
 
-@property (nonatomic, assign) NSInteger initialPageIndex;
+@property (nonatomic, assign) NSInteger initialIndex;
 @property (nonatomic, assign) BOOL initialAnimated;
 
 - (UIImage *)loadThumbnailImageAtIndex:(NSInteger)index;
@@ -21,7 +21,7 @@
 
 @implementation PTImageAlbumViewController
 
-@synthesize initialPageIndex = _initialPageIndex;
+@synthesize initialIndex = _initialIndex;
 @synthesize initialAnimated = _initialAnimated;
 @synthesize imageAlbumView = _imageAlbumView;
 
@@ -30,7 +30,7 @@
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
         // Custom initialization
-        _initialPageIndex = 0;
+        _initialIndex = 0;
         _initialAnimated = YES;
         _imageAlbumView = [[PTImageAlbumView alloc] init];
         _imageAlbumView.imageAlbumDataSource = self;
@@ -38,12 +38,12 @@
     return self;
 }
 
-- (id)initWithPageAtIndex:(NSInteger)pageIndex animated:(BOOL)animated
+- (id)initWithImageAtIndex:(NSInteger)index animated:(BOOL)animated
 {
     self = [self init];
     if (self) {
         // Custom initialization
-        _initialPageIndex = pageIndex;
+        _initialIndex = index;
         _initialAnimated = animated;
     }
     return self;
@@ -88,8 +88,8 @@
     }
     [self.photoScrubberView reloadData];
     
-    if (self.initialPageIndex > 0) {
-        [self.photoAlbumView moveToPageAtIndex:self.initialPageIndex animated:self.initialAnimated];
+    if (self.initialIndex > 0) {
+        [self.photoAlbumView moveToPageAtIndex:self.initialIndex animated:self.initialAnimated];
     }
 }
 
