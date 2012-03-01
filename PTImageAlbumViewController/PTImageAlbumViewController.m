@@ -87,6 +87,11 @@
         [self loadThumbnailImageAtIndex:i];
     }
     [self.photoScrubberView reloadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     
     if (self.initialIndex > 0) {
         [self.photoAlbumView moveToPageAtIndex:self.initialIndex animated:self.initialAnimated];
