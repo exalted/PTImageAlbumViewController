@@ -110,7 +110,7 @@
      * them all!)
      */
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return interfaceOrientation == UIInterfaceOrientationPortrait;
+        return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
     }
     
     ////////////////////////////////////////////////////////////////////////////
