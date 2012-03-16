@@ -24,8 +24,6 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    ////////////////////////////////////////////////////////////////////////////
-    
     /*
      * Optional: do some disk caching (don't exaggerate though, because this
      * isn't data persistence): less network requests so that content ideally
@@ -40,6 +38,8 @@
                                                          diskCapacity:kDiskCapacity
                                                              diskPath:[SDURLCache defaultCachePath]];
     [NSURLCache setSharedURLCache:urlCache];
+    
+    ////////////////////////////////////////////////////////////////////////////
     
     /*
      * This is how we alloc & init a PTImageAlbumViewController instance
