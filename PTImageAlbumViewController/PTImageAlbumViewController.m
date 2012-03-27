@@ -100,7 +100,7 @@
     [super viewWillAppear:animated];
     
     if (self.initialIndex > 0) {
-        [self.photoAlbumView moveToPageAtIndex:self.initialIndex animated:animated];
+        [self.photoAlbumView moveToPageAtIndex:self.initialIndex animated:NO];
     }
 }
 
