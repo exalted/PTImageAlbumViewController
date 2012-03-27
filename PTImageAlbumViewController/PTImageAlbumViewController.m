@@ -45,7 +45,7 @@
     return self;
 }
 
-- (id)initWithImageAtIndex:(NSInteger)index animated:(BOOL)animated
+- (id)initWithImageAtIndex:(NSInteger)index
 {
     self = [self init];
     if (self) {

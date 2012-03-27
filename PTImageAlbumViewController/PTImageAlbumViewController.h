@@ -26,6 +26,6 @@
 
 @property (nonatomic, retain) PTImageAlbumView *imageAlbumView;
 
-- (id)initWithImageAtIndex:(NSInteger)index animated:(BOOL)animated;
+- (id)initWithImageAtIndex:(NSInteger)index;
 
 @end
