@@ -375,7 +375,7 @@
 		505AE87114ED648D00BBFC05 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = "Apex-net srl";
 			};
 			buildConfigurationList = 505AE87414ED648D00BBFC05 /* Build configuration list for PBXProject "AlbumDemo" */;
