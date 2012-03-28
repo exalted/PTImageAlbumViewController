@@ -135,14 +135,14 @@
     return [self.exampleData count];
 }
 
-- (NSString *)imageAlbumView:(PTImageAlbumView *)imageAlbumView sourceForImageAtIndex:(NSInteger)index
-{
-    return [[self.exampleData objectAtIndex:index] objectForKey:kPTDemoSourceKey];
-}
-
 - (CGSize)imageAlbumView:(PTImageAlbumView *)imageAlbumView sizeForImageAtIndex:(NSInteger)index
 {
     return [[[self.exampleData objectAtIndex:index] objectForKey:kPTDemoSizeKey] CGSizeValue];
+}
+
+- (NSString *)imageAlbumView:(PTImageAlbumView *)imageAlbumView sourceForImageAtIndex:(NSInteger)index
+{
+    return [[self.exampleData objectAtIndex:index] objectForKey:kPTDemoSourceKey];
 }
 
 - (NSString *)imageAlbumView:(PTImageAlbumView *)imageAlbumView sourceForThumbnailImageAtIndex:(NSInteger)index

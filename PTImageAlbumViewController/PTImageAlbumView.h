@@ -23,9 +23,14 @@
 @property (nonatomic, assign) id<PTImageAlbumViewDataSource> imageAlbumDataSource;
 
 - (NSInteger)numberOfImages;
-- (NSString *)originalSourceForImageAtIndex:(NSInteger)index;
-- (CGSize)originalSizeForImageAtIndex:(NSInteger)index;
-- (NSString *)thumbnailSourceForImageAtIndex:(NSInteger)index;
+
+- (CGSize)sizeForImageAtIndex:(NSInteger)index;
+
+- (UIImage *)imageAtIndex:(NSInteger)index;
+- (UIImage *)thumbnailImageAtIndex:(NSInteger)index;
+
+- (NSString *)sourceForImageAtIndex:(NSInteger)index;
+- (NSString *)sourceForThumbnailImageAtIndex:(NSInteger)index;
 
 - (void)reloadData;
 

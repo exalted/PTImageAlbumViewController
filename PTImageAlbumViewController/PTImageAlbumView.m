@@ -40,19 +40,33 @@
     return [self.data count];
 }
 
-- (NSString *)originalSourceForImageAtIndex:(NSInteger)index
-{
-    return [[self.data objectAtIndex:index] objectForKey:@"source"];
-}
-
-- (CGSize)originalSizeForImageAtIndex:(NSInteger)index
+- (CGSize)sizeForImageAtIndex:(NSInteger)index
 {
     return [[[self.data objectAtIndex:index] objectForKey:@"size"] CGSizeValue];
 }
 
-- (NSString *)thumbnailSourceForImageAtIndex:(NSInteger)index
+- (UIImage *)imageAtIndex:(NSInteger)index
 {
-    return [[self.data objectAtIndex:index] objectForKey:@"thumbnailSource"];
+    id object = [[self.data objectAtIndex:index] objectForKey:@"image"];
+    return object == [NSNull null] ? nil : object;
+}
+
+- (UIImage *)thumbnailImageAtIndex:(NSInteger)index
+{
+    id object = [[self.data objectAtIndex:index] objectForKey:@"thumbnailImage"];
+    return object == [NSNull null] ? nil : object;
+}
+
+- (NSString *)sourceForImageAtIndex:(NSInteger)index
+{
+    id object = [[self.data objectAtIndex:index] objectForKey:@"source"];
+    return object == [NSNull null] ? nil : object;
+}
+
+- (NSString *)sourceForThumbnailImageAtIndex:(NSInteger)index
+{
+    id object = [[self.data objectAtIndex:index] objectForKey:@"thumbnailImageSource"];
+    return object == [NSNull null] ? nil : object;
 }
 
 - (void)reloadData
@@ -63,15 +77,33 @@
     // Create an images' info array for reusing
     self.data = [NSMutableArray arrayWithCapacity:numberOfImages];
     for (NSInteger i = 0; i < numberOfImages; i++) {
-        // Ask datasource for various data
-        NSString *originalImageSource = [self.imageAlbumDataSource imageAlbumView:self sourceForImageAtIndex:i];
-        CGSize originalImageSize = [self.imageAlbumDataSource imageAlbumView:self sizeForImageAtIndex:i];
-        NSString *thumbnailImageSource = [self.imageAlbumDataSource imageAlbumView:self sourceForThumbnailImageAtIndex:i];
+        // Ask data source for image size
+        CGSize size = [self.imageAlbumDataSource imageAlbumView:self sizeForImageAtIndex:i];
+        
+        // Ask data source for image and thumbnail image
+        UIImage *image = [self.imageAlbumDataSource imageAlbumView:self imageAtIndex:i];
+        UIImage *thumbnailImage = [self.imageAlbumDataSource imageAlbumView:self thumbnailImageAtIndex:i];
+        
+        // If image is nil, ask data source where to get it
+        NSString *source;
+        if (!image) {
+            source = [self.imageAlbumDataSource imageAlbumView:self sourceForImageAtIndex:i];
+            NSAssert(source, @"cannot show image since you didn't neither returned it nor told us where to get it.");
+        }
+
+        // If thumbnail image is nil, ask data source where to get it
+        NSString *thumbnailImageSource;
+        if (!thumbnailImage) {
+            thumbnailImageSource = [self.imageAlbumDataSource imageAlbumView:self sourceForThumbnailImageAtIndex:i];
+            NSAssert(thumbnailImageSource, @"cannot thumbnail show image since you didn't neither returned it nor told us where to get it.");
+        }
         
         [self.data addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                              originalImageSource, @"source",
-                              [NSValue valueWithCGSize:originalImageSize], @"size",
-                              thumbnailImageSource, @"thumbnailSource",
+                              [NSValue valueWithCGSize:size], @"size",
+                              image ? image : [NSNull null], @"image",
+                              thumbnailImage ? thumbnailImage : [NSNull null], @"thumbnailImage",
+                              source ? source : [NSNull null], @"source",
+                              thumbnailImageSource ? thumbnailImageSource : [NSNull null], @"thumbnailImageSource",
                               nil]];
     }
 }

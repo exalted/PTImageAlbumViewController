@@ -128,30 +128,34 @@
 
 - (UIImage *)loadThumbnailImageAtIndex:(NSInteger)index
 {
-    NSString *photoIndexKey = [NSString stringWithFormat:@"%d", index];
-    
-    UIImage *image = [self.highQualityImageCache objectWithName:photoIndexKey];
+    // Try getting thumbnail image
+    UIImage *image = [self.imageAlbumView thumbnailImageAtIndex:index];
     if (image == nil) {
-        NSString *source = [self.imageAlbumView thumbnailSourceForImageAtIndex:index];
-
-        // TODO remove duplicate
-        // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-        NSURL *url = nil;
-        
-        // Check for file URLs.
-        if ([source hasPrefix:@"/"]) {
-            // If the url starts with / then it's likely a file URL, so treat it accordingly.
-            url = [NSURL fileURLWithPath:source];
+        // Check in-memory cache for a previously saved image
+        image = [self.thumbnailImageCache objectWithName:[NSString stringWithFormat:@"%d", index]];
+        if (image == nil) {
+            // We don't have thumbnail image yet, let's download it
+            NSString *source = [self.imageAlbumView sourceForThumbnailImageAtIndex:index];
+            
+            // TODO remove duplicate
+            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            NSURL *url = nil;
+            
+            // Check for file URLs.
+            if ([source hasPrefix:@"/"]) {
+                // If the url starts with / then it's likely a file URL, so treat it accordingly.
+                url = [NSURL fileURLWithPath:source];
+            }
+            else {
+                // Otherwise we assume it's a regular URL.
+                url = [NSURL URLWithString:source];
+            }
+            // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            
+            [self requestImageFromSource:[url absoluteString]
+                               photoSize:NIPhotoScrollViewPhotoSizeThumbnail
+                              photoIndex:index];
         }
-        else {
-            // Otherwise we assume it's a regular URL.
-            url = [NSURL URLWithString:source];
-        }
-        // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-        
-        [self requestImageFromSource:[url absoluteString]
-                           photoSize:NIPhotoScrollViewPhotoSizeThumbnail
-                          photoIndex:index];
     }
     
     return image;
@@ -179,49 +183,22 @@
           originalPhotoDimensions:(CGSize *)originalPhotoDimensions
 {
     // Let the photo album view know how large the photo will be once it's fully loaded.
-    *originalPhotoDimensions = [self.imageAlbumView originalSizeForImageAtIndex:photoIndex];
+    *originalPhotoDimensions = [self.imageAlbumView sizeForImageAtIndex:photoIndex];
     
-    NSString *photoIndexKey = [NSString stringWithFormat:@"%d", photoIndex];
-    
-    UIImage *image = [self.highQualityImageCache objectWithName:photoIndexKey];
+    UIImage *image = [self.imageAlbumView imageAtIndex:photoIndex];
     if (image) {
         *photoSize = NIPhotoScrollViewPhotoSizeOriginal;
     }
     else {
-        NSString *source = [self.imageAlbumView originalSourceForImageAtIndex:photoIndex];
-
-        // TODO remove duplicate
-        // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-        NSURL *url = nil;
-        
-        // Check for file URLs.
-        if ([source hasPrefix:@"/"]) {
-            // If the url starts with / then it's likely a file URL, so treat it accordingly.
-            url = [NSURL fileURLWithPath:source];
-        }
-        else {
-            // Otherwise we assume it's a regular URL.
-            url = [NSURL URLWithString:source];
-        }
-        // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-        
-        [self requestImageFromSource:[url absoluteString]
-                           photoSize:NIPhotoScrollViewPhotoSizeOriginal
-                          photoIndex:photoIndex];
-        *isLoading = YES;
-
-        // Try to return the thumbnail image if we can.
-        image = [self.thumbnailImageCache objectWithName:photoIndexKey];
+        image = [self.highQualityImageCache objectWithName:[NSString stringWithFormat:@"%d", photoIndex]];
         if (image) {
-            *photoSize = NIPhotoScrollViewPhotoSizeThumbnail;
+            *photoSize = NIPhotoScrollViewPhotoSizeOriginal;
         }
         else {
-            // Load the thumbnail as well.
+            NSString *source = [self.imageAlbumView sourceForImageAtIndex:photoIndex];
             
-            NSString *source = [self.imageAlbumView thumbnailSourceForImageAtIndex:photoIndex];
-
             // TODO remove duplicate
-            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
             NSURL *url = nil;
             
             // Check for file URLs.
@@ -233,11 +210,15 @@
                 // Otherwise we assume it's a regular URL.
                 url = [NSURL URLWithString:source];
             }
-            // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
             
             [self requestImageFromSource:[url absoluteString]
-                               photoSize:NIPhotoScrollViewPhotoSizeThumbnail
+                               photoSize:NIPhotoScrollViewPhotoSizeOriginal
                               photoIndex:photoIndex];
+            *isLoading = YES;
+            
+            // Try to return the thumbnail image if we can.
+            image = [self loadThumbnailImageAtIndex:photoIndex];
         }
     }
     
@@ -276,21 +257,31 @@
     return -1;
 }
 
-- (NSString *)imageAlbumView:(PTImageAlbumView *)imageAlbumView sourceForImageAtIndex:(NSInteger)index
-{
-    NSAssert(NO, @"missing required method implementation 'imageAlbumView:sourceForImageAtIndex:'");
-    return nil;
-}
-
 - (CGSize)imageAlbumView:(PTImageAlbumView *)imageAlbumView sizeForImageAtIndex:(NSInteger)index
 {
     NSAssert(NO, @"missing required method implementation 'imageAlbumView:sizeForImageAtIndex:'");
     return CGSizeZero;
 }
 
+- (UIImage *)imageAlbumView:(PTImageAlbumView *)imageAlbumView imageAtIndex:(NSInteger)index
+{
+    return nil;
+}
+
+- (UIImage *)imageAlbumView:(PTImageAlbumView *)imageAlbumView thumbnailImageAtIndex:(NSInteger)index
+{
+    return nil;
+}
+
+- (NSString *)imageAlbumView:(PTImageAlbumView *)imageAlbumView sourceForImageAtIndex:(NSInteger)index
+{
+    NSAssert(NO, @"missing both 'imageAlbumView:imageAtIndex:' and 'imageAlbumView:sourceForImageAtIndex:' in PTImageAlbumViewDataSource protocol's implementation.");
+    return nil;
+}
+
 - (NSString *)imageAlbumView:(PTImageAlbumView *)imageAlbumView sourceForThumbnailImageAtIndex:(NSInteger)index
 {
-    NSAssert(NO, @"missing required method implementation 'imageAlbumView:sourceForThumbnailImageAtIndex:'");
+    NSAssert(NO, @"missing both 'imageAlbumView:thumbnailImageAtIndex:' and 'imageAlbumView:sourceForThumbnailImageAtIndex:' in PTImageAlbumViewDataSource protocol's implementation.");
     return nil;
 }
 
