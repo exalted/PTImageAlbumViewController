@@ -18,9 +18,9 @@
 
 #import "PTImageAlbumViewDataSource.h"
 
-@interface PTImageAlbumView ()
-
-@property (nonatomic, retain) NSMutableArray *data;
+@interface PTImageAlbumView () {
+    NSInteger _numberOfImages;
+}
 
 @end
 
@@ -28,82 +28,29 @@
 
 @synthesize imageAlbumDataSource = _imageAlbumDataSource;
 
-// private
-@synthesize data = _data;
-
 #pragma mark - Instance methods
 
 - (NSInteger)numberOfImages
 {
-    return [self.data count];
+    if (!_numberOfImages) {
+        _numberOfImages = [self.imageAlbumDataSource numberOfImagesInAlbumView:self];
+    }
+    return _numberOfImages;
 }
 
 - (CGSize)sizeForImageAtIndex:(NSInteger)index
 {
-    return [[[self.data objectAtIndex:index] objectForKey:@"size"] CGSizeValue];
-}
-
-- (UIImage *)imageAtIndex:(NSInteger)index
-{
-    id object = [[self.data objectAtIndex:index] objectForKey:@"image"];
-    return object == [NSNull null] ? nil : object;
-}
-
-- (UIImage *)thumbnailImageAtIndex:(NSInteger)index
-{
-    id object = [[self.data objectAtIndex:index] objectForKey:@"thumbnailImage"];
-    return object == [NSNull null] ? nil : object;
+    return [self.imageAlbumDataSource imageAlbumView:self sizeForImageAtIndex:index];
 }
 
 - (NSString *)sourceForImageAtIndex:(NSInteger)index
 {
-    id object = [[self.data objectAtIndex:index] objectForKey:@"source"];
-    return object == [NSNull null] ? nil : object;
+    return [self.imageAlbumDataSource imageAlbumView:self sourceForImageAtIndex:index];
 }
 
 - (NSString *)sourceForThumbnailImageAtIndex:(NSInteger)index
 {
-    id object = [[self.data objectAtIndex:index] objectForKey:@"thumbnailImageSource"];
-    return object == [NSNull null] ? nil : object;
-}
-
-- (void)reloadData
-{
-    // Ask data source for number of images
-    NSInteger numberOfImages = [self.imageAlbumDataSource numberOfImagesInAlbumView:self];
-    
-    // Create an images' info array for reusing
-    self.data = [NSMutableArray arrayWithCapacity:numberOfImages];
-    for (NSInteger i = 0; i < numberOfImages; i++) {
-        // Ask data source for image size
-        CGSize size = [self.imageAlbumDataSource imageAlbumView:self sizeForImageAtIndex:i];
-        
-        // Ask data source for image and thumbnail image
-        UIImage *image = [self.imageAlbumDataSource imageAlbumView:self imageAtIndex:i];
-        UIImage *thumbnailImage = [self.imageAlbumDataSource imageAlbumView:self thumbnailImageAtIndex:i];
-        
-        // If image is nil, ask data source where to get it
-        NSString *source;
-        if (!image) {
-            source = [self.imageAlbumDataSource imageAlbumView:self sourceForImageAtIndex:i];
-            NSAssert(source, @"cannot show image since you didn't neither returned it nor told us where to get it.");
-        }
-
-        // If thumbnail image is nil, ask data source where to get it
-        NSString *thumbnailImageSource;
-        if (!thumbnailImage) {
-            thumbnailImageSource = [self.imageAlbumDataSource imageAlbumView:self sourceForThumbnailImageAtIndex:i];
-            NSAssert(thumbnailImageSource, @"cannot thumbnail show image since you didn't neither returned it nor told us where to get it.");
-        }
-        
-        [self.data addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                              [NSValue valueWithCGSize:size], @"size",
-                              image ? image : [NSNull null], @"image",
-                              thumbnailImage ? thumbnailImage : [NSNull null], @"thumbnailImage",
-                              source ? source : [NSNull null], @"source",
-                              thumbnailImageSource ? thumbnailImageSource : [NSNull null], @"thumbnailImageSource",
-                              nil]];
-    }
+    return [self.imageAlbumDataSource imageAlbumView:self sourceForThumbnailImageAtIndex:index];
 }
 
 @end
