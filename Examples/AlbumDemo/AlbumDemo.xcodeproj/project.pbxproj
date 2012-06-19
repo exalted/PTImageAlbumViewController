@@ -51,6 +51,7 @@
 		504A4C4315908E1800B8FBBE /* NIRadioGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 504A4C3915908E1800B8FBBE /* NIRadioGroupController.m */; };
 		504A4C4415908E1800B8FBBE /* NITableViewActions.m in Sources */ = {isa = PBXBuildFile; fileRef = 504A4C3B15908E1800B8FBBE /* NITableViewActions.m */; };
 		504A4C4515908E1800B8FBBE /* NITableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 504A4C3D15908E1800B8FBBE /* NITableViewModel.m */; };
+		505839AC1590CEF1007C9675 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 505839AB1590CEF1007C9675 /* ImageIO.framework */; };
 		505AE87F14ED648D00BBFC05 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 505AE87E14ED648D00BBFC05 /* UIKit.framework */; };
 		505AE88114ED648D00BBFC05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 505AE88014ED648D00BBFC05 /* Foundation.framework */; };
 		505AE88314ED648D00BBFC05 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 505AE88214ED648D00BBFC05 /* CoreGraphics.framework */; };
@@ -172,6 +173,7 @@
 		504A4C3C15908E1800B8FBBE /* NITableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NITableViewModel.h; path = ../../Libraries/nimbus/src/models/src/NITableViewModel.h; sourceTree = "<group>"; };
 		504A4C3D15908E1800B8FBBE /* NITableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NITableViewModel.m; path = ../../Libraries/nimbus/src/models/src/NITableViewModel.m; sourceTree = "<group>"; };
 		504A4C3E15908E1800B8FBBE /* NITableViewModel+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NITableViewModel+Private.h"; path = "../../Libraries/nimbus/src/models/src/NITableViewModel+Private.h"; sourceTree = "<group>"; };
+		505839AB1590CEF1007C9675 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		505AE87A14ED648D00BBFC05 /* AlbumDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlbumDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		505AE87E14ED648D00BBFC05 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		505AE88014ED648D00BBFC05 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -198,6 +200,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				505839AC1590CEF1007C9675 /* ImageIO.framework in Frameworks */,
 				505AE87F14ED648D00BBFC05 /* UIKit.framework in Frameworks */,
 				505AE88114ED648D00BBFC05 /* Foundation.framework in Frameworks */,
 				505AE88314ED648D00BBFC05 /* CoreGraphics.framework in Frameworks */,
@@ -288,6 +291,7 @@
 		505AE87D14ED648D00BBFC05 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				505839AB1590CEF1007C9675 /* ImageIO.framework */,
 				505AE87E14ED648D00BBFC05 /* UIKit.framework */,
 				505AE88014ED648D00BBFC05 /* Foundation.framework */,
 				505AE88214ED648D00BBFC05 /* CoreGraphics.framework */,

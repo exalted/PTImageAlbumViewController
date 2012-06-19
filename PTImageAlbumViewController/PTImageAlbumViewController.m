@@ -241,12 +241,6 @@
     return -1;
 }
 
-- (CGSize)imageAlbumView:(PTImageAlbumView *)imageAlbumView sizeForImageAtIndex:(NSInteger)index
-{
-    NSAssert(NO, @"missing required method implementation 'imageAlbumView:sizeForImageAtIndex:'");
-    return CGSizeZero;
-}
-
 - (NSString *)imageAlbumView:(PTImageAlbumView *)imageAlbumView sourceForImageAtIndex:(NSInteger)index
 {
     NSAssert(NO, @"missing required method implementation 'imageAlbumView:sourceForImageAtIndex:'");

@@ -22,8 +22,11 @@
 
 @required
 - (NSInteger)numberOfImagesInAlbumView:(PTImageAlbumView *)imageAlbumView;
-- (CGSize)imageAlbumView:(PTImageAlbumView *)imageAlbumView sizeForImageAtIndex:(NSInteger)index;
 - (NSString *)imageAlbumView:(PTImageAlbumView *)imageAlbumView sourceForImageAtIndex:(NSInteger)index;
 - (NSString *)imageAlbumView:(PTImageAlbumView *)imageAlbumView sourceForThumbnailImageAtIndex:(NSInteger)index;
+
+@optional
+// if you don't implement this, we will try to guess it
+- (CGSize)imageAlbumView:(PTImageAlbumView *)imageAlbumView sizeForImageAtIndex:(NSInteger)index;
 
 @end

@@ -16,6 +16,8 @@
 
 #import "PTImageAlbumView.h"
 
+#import <ImageIO/ImageIO.h>
+
 #import "PTImageAlbumViewDataSource.h"
 
 @interface PTImageAlbumView () {
@@ -40,7 +42,47 @@
 
 - (CGSize)sizeForImageAtIndex:(NSInteger)index
 {
-    return [self.imageAlbumDataSource imageAlbumView:self sizeForImageAtIndex:index];
+    if ([self.imageAlbumDataSource respondsToSelector:@selector(imageAlbumView:sizeForImageAtIndex:)]) {
+        return [self.imageAlbumDataSource imageAlbumView:self sizeForImageAtIndex:index];
+    }
+    else {
+        NSString *source = [self.imageAlbumDataSource imageAlbumView:self sourceForImageAtIndex:index];
+        
+        // TODO remove duplicate
+        // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        NSURL *url = nil;
+        
+        // Check for file URLs.
+        if ([source hasPrefix:@"/"]) {
+            // If the url starts with / then it's likely a file URL, so treat it accordingly.
+            url = [NSURL fileURLWithPath:source];
+        }
+        else {
+            // Otherwise we assume it's a regular URL.
+            url = [NSURL URLWithString:source];
+        }
+        // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        
+        CGImageSourceRef imageSource = CGImageSourceCreateWithURL((__bridge CFURLRef)url, NULL);
+        if (imageSource) {
+            NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                                     [NSNumber numberWithBool:NO], (NSString *)kCGImageSourceShouldCache, 
+                                     nil];
+            
+            CFDictionaryRef imageProperties = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, (__bridge CFDictionaryRef)options);
+            CFRelease(imageSource);
+
+            if (imageProperties) {
+                NSNumber *width = (__bridge NSNumber *)CFDictionaryGetValue(imageProperties, kCGImagePropertyPixelWidth);
+                NSNumber *height = (__bridge NSNumber *)CFDictionaryGetValue(imageProperties, kCGImagePropertyPixelHeight);
+                CFRelease(imageProperties);
+                
+                return CGSizeMake([width floatValue], [height floatValue]);
+            }
+        }
+    }
+    
+    return CGSizeZero;
 }
 
 - (NSString *)sourceForImageAtIndex:(NSInteger)index
