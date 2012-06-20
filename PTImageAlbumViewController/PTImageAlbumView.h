@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-@protocol PTImageAlbumViewDataSource;
+#import "PTImageAlbumViewDataSource.h"
 
 @interface PTImageAlbumView : NIPhotoAlbumScrollView
 

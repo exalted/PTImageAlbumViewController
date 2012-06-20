@@ -16,9 +16,7 @@
 
 #import "NetworkPhotoAlbumViewController.h"
 
-#import "PTImageAlbumViewDataSource.h"
-
-@class PTImageAlbumView;
+#import "PTImageAlbumView.h"
 
 @interface PTImageAlbumViewController : NetworkPhotoAlbumViewController <PTImageAlbumViewDataSource>
 

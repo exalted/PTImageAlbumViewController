@@ -18,8 +18,6 @@
 
 #import <ImageIO/ImageIO.h>
 
-#import "PTImageAlbumViewDataSource.h"
-
 @interface PTImageAlbumView () {
     NSMutableArray *_cachedData;
 }

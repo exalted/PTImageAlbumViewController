@@ -16,8 +16,6 @@
 
 #import "PTImageAlbumViewController.h"
 
-#import "PTImageAlbumView.h"
-
 @interface PTImageAlbumViewController () <NIPhotoAlbumScrollViewDataSource, NIPhotoScrubberViewDataSource>
 
 @property (nonatomic, assign) NSInteger initialIndex;
