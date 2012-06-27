@@ -98,22 +98,22 @@
 
 - (NSString *)sourceForImageAtIndex:(NSInteger)index
 {
-    NSString *source = [[_cachedData objectAtIndex:index] objectForKey:@"source"];
+    id source = [[_cachedData objectAtIndex:index] objectForKey:@"source"];
     if (source == nil) {
         source = [self.imageAlbumDataSource imageAlbumView:self sourceForImageAtIndex:index];
-        [[_cachedData objectAtIndex:index] setObject:source forKey:@"source"];
+        [[_cachedData objectAtIndex:index] setObject:(source ? source : [NSNull null]) forKey:@"source"];
     }
-    return source;
+    return source == [NSNull null] ? nil : source;
 }
 
 - (NSString *)sourceForThumbnailImageAtIndex:(NSInteger)index
 {
-    NSString *source = [[_cachedData objectAtIndex:index] objectForKey:@"thumbnailSource"];
+    id source = [[_cachedData objectAtIndex:index] objectForKey:@"thumbnailSource"];
     if (source == nil) {
         source = [self.imageAlbumDataSource imageAlbumView:self sourceForThumbnailImageAtIndex:index];
-        [[_cachedData objectAtIndex:index] setObject:source forKey:@"thumbnailSource"];
+        [[_cachedData objectAtIndex:index] setObject:(source ? source : [NSNull null]) forKey:@"thumbnailSource"];
     }
-    return source;
+    return source == [NSNull null] ? nil : source;
 }
 
 @end
