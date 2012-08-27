@@ -5,8 +5,7 @@ How To Get It
 $ cd <somewhere>
 $ git clone git://github.com/exalted/PTImageAlbumViewController.git PTImageAlbumViewController-exalted
 $ cd PTImageAlbumViewController-exalted/
-$ git submodule init
-$ git submodule update
+$ git submodule update --init --recursive
 $ open Examples/AlbumDemo/AlbumDemo.xcodeproj
 ```
 
