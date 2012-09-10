@@ -62,6 +62,7 @@
 		508F7CEA14EE9318000140D6 /* PTImageAlbumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 508F7CE914EE9318000140D6 /* PTImageAlbumView.m */; };
 		508F81F614EE763A0002881F /* PTDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 508F81F514EE763A0002881F /* PTDemoViewController.m */; };
 		50918CDA14F50E900005AD9C /* SDURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 50918CD914F50E900005AD9C /* SDURLCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		50C0085D15FDFCB900A3B951 /* CaptionedPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C0085C15FDFCB900A3B951 /* CaptionedPhotoView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -193,6 +194,8 @@
 		508F81F514EE763A0002881F /* PTDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTDemoViewController.m; sourceTree = "<group>"; };
 		50918CD814F50E900005AD9C /* SDURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDURLCache.h; path = ../../Libraries/SDURLCache/SDURLCache.h; sourceTree = "<group>"; };
 		50918CD914F50E900005AD9C /* SDURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDURLCache.m; path = ../../Libraries/SDURLCache/SDURLCache.m; sourceTree = "<group>"; };
+		50C0085B15FDFCB900A3B951 /* CaptionedPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CaptionedPhotoView.h; path = ../../Libraries/nimbus/examples/photos/NetworkPhotoAlbums/src/CaptionedPhotoView.h; sourceTree = "<group>"; };
+		50C0085C15FDFCB900A3B951 /* CaptionedPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CaptionedPhotoView.m; path = ../../Libraries/nimbus/examples/photos/NetworkPhotoAlbums/src/CaptionedPhotoView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +216,8 @@
 		5012A8DF14F2761700BFF30D /* NetworkPhotoAlbumViewController */ = {
 			isa = PBXGroup;
 			children = (
+				50C0085B15FDFCB900A3B951 /* CaptionedPhotoView.h */,
+				50C0085C15FDFCB900A3B951 /* CaptionedPhotoView.m */,
 				504A4C0D15908C8F00B8FBBE /* NetworkPhotoAlbumViewController.h */,
 				504A4C0E15908C8F00B8FBBE /* NetworkPhotoAlbumViewController.m */,
 			);
@@ -569,6 +574,7 @@
 				504A4C4315908E1800B8FBBE /* NIRadioGroupController.m in Sources */,
 				504A4C4415908E1800B8FBBE /* NITableViewActions.m in Sources */,
 				504A4C4515908E1800B8FBBE /* NITableViewModel.m in Sources */,
+				50C0085D15FDFCB900A3B951 /* CaptionedPhotoView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

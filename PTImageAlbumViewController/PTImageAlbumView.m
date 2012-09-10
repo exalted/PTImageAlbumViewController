@@ -116,4 +116,19 @@
     return source == [NSNull null] ? nil : source;
 }
 
+- (NSString *)captionForImageAtIndex:(NSInteger)index
+{
+    id caption = [[_cachedData objectAtIndex:index] objectForKey:@"imageCaption"];
+    if (caption == nil) {
+        if ([self.imageAlbumDataSource respondsToSelector:@selector(imageAlbumView:captionForImageAtIndex:)]) {
+            caption = [self.imageAlbumDataSource imageAlbumView:self captionForImageAtIndex:index];
+            [[_cachedData objectAtIndex:index] setObject:(caption ? caption : [NSNull null]) forKey:@"imageCaption"];
+        }
+        else {
+            [[_cachedData objectAtIndex:index] setObject:[NSNull null] forKey:@"imageCaption"];
+        }
+    }
+    return caption == [NSNull null] ? nil : caption;
+}
+
 @end

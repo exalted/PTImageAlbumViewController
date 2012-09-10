@@ -29,4 +29,6 @@
 // if you don't implement this, we will try to guess it
 - (CGSize)imageAlbumView:(PTImageAlbumView *)imageAlbumView sizeForImageAtIndex:(NSInteger)index;
 
+- (NSString *)imageAlbumView:(PTImageAlbumView *)imageAlbumView captionForImageAtIndex:(NSInteger)index;
+
 @end

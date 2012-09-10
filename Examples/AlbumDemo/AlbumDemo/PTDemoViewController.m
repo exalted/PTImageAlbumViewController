@@ -25,6 +25,7 @@
 #define kPTDemoSourceKey        @"source"
 #define kPTDemoSizeKey          @"size"
 #define kPTDemoThumbnailKey     @"thumbnail"
+#define kPTDemoCaptionKey       @"caption"
 
 @implementation PTDemoViewController
 
@@ -39,42 +40,49 @@
                          @"http://farm8.staticflickr.com/7053/6885649635_7d29d75a31_b.jpg", kPTDemoSourceKey,
                          [NSValue valueWithCGSize:CGSizeMake(1024.0, 768.0)], kPTDemoSizeKey,
                          @"http://farm8.staticflickr.com/7053/6885649635_7d29d75a31_t.jpg", kPTDemoThumbnailKey,
+                         @"Ornare Mollis Risus Vulputate Dapibus", kPTDemoCaptionKey,
                          nil],
 
                         [NSDictionary dictionaryWithObjectsAndKeys:
                          @"http://farm8.staticflickr.com/7052/6859587887_2f2df80989_b.jpg", kPTDemoSourceKey,
                          [NSValue valueWithCGSize:CGSizeMake(1024.0, 683.0)], kPTDemoSizeKey,
                          @"http://farm8.staticflickr.com/7052/6859587887_2f2df80989_t.jpg", kPTDemoThumbnailKey,
+                         [NSNull null], kPTDemoCaptionKey,
                          nil],
                         
                         [NSDictionary dictionaryWithObjectsAndKeys:
                          @"http://farm1.staticflickr.com/188/417924629_6832e79c98_z.jpg", kPTDemoSourceKey,
                          [NSValue valueWithCGSize:CGSizeMake(500.0, 500.0)], kPTDemoSizeKey,
                          @"http://farm1.staticflickr.com/188/417924629_6832e79c98_t.jpg", kPTDemoThumbnailKey,
+                         @"Mollis Consectetur", kPTDemoCaptionKey,
                          nil],
                         
                         [NSDictionary dictionaryWithObjectsAndKeys:
                          @"http://farm4.staticflickr.com/3338/3274183756_10411ace99_b.jpg", kPTDemoSourceKey,
                          [NSValue valueWithCGSize:CGSizeMake(572.0, 528.0)], kPTDemoSizeKey,
                          @"http://farm4.staticflickr.com/3338/3274183756_10411ace99_t.jpg", kPTDemoThumbnailKey,
+                         @"Nullam id dolor id nibh ultricies vehicula ut id elit.", kPTDemoCaptionKey,
                          nil],
                         
                         [NSDictionary dictionaryWithObjectsAndKeys:
                          @"http://farm8.staticflickr.com/7040/6888124857_df14f44fd7_b.jpg", kPTDemoSourceKey,
                          [NSValue valueWithCGSize:CGSizeMake(800.0, 613.0)], kPTDemoSizeKey,
                          @"http://farm8.staticflickr.com/7040/6888124857_df14f44fd7_t.jpg", kPTDemoThumbnailKey,
+                         [NSNull null], kPTDemoCaptionKey,
                          nil],
                         
                         [NSDictionary dictionaryWithObjectsAndKeys:
                          @"http://farm4.staticflickr.com/3503/3266055425_eed1ecc779_b.jpg", kPTDemoSourceKey,
                          [NSValue valueWithCGSize:CGSizeMake(1024.0, 768.0)], kPTDemoSizeKey,
                          @"http://farm4.staticflickr.com/3503/3266055425_eed1ecc779_t.jpg", kPTDemoThumbnailKey,
+                         @"Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus.\n\nNullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec id elit non mi porta gravida at eget metus.", kPTDemoCaptionKey,
                          nil],
                         
                         [NSDictionary dictionaryWithObjectsAndKeys:
                          @"http://farm1.staticflickr.com/10/11621713_3ac2d1c5d7_b.jpg", kPTDemoSourceKey,
                          [NSValue valueWithCGSize:CGSizeMake(1024.0, 681.0)], kPTDemoSizeKey,
                          @"http://farm1.staticflickr.com/10/11621713_3ac2d1c5d7_t.jpg", kPTDemoThumbnailKey,
+                         @"Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", kPTDemoCaptionKey,
                          nil],
                         
                         nil];
@@ -146,6 +154,11 @@
 - (NSString *)imageAlbumView:(PTImageAlbumView *)imageAlbumView sourceForThumbnailImageAtIndex:(NSInteger)index
 {
     return [[self.exampleData objectAtIndex:index] objectForKey:kPTDemoThumbnailKey];
+}
+
+- (NSString *)imageAlbumView:(PTImageAlbumView *)imageAlbumView captionForImageAtIndex:(NSInteger)index
+{
+    return [[self.exampleData objectAtIndex:index] objectForKey:kPTDemoCaptionKey];
 }
 
 @end

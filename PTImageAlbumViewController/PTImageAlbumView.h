@@ -27,4 +27,6 @@
 - (NSString *)sourceForImageAtIndex:(NSInteger)index;
 - (NSString *)sourceForThumbnailImageAtIndex:(NSInteger)index;
 
+- (NSString *)captionForImageAtIndex:(NSInteger)index;
+
 @end

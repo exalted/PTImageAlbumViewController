@@ -16,6 +16,8 @@
 
 #import "PTImageAlbumViewController.h"
 
+#import "CaptionedPhotoView.h"
+
 @interface PTImageAlbumViewController () <NIPhotoAlbumScrollViewDataSource, NIPhotoScrubberViewDataSource>
 
 @property (nonatomic, assign) NSInteger initialIndex;
@@ -158,8 +160,30 @@
 
 - (UIView<NIPagingScrollViewPage> *)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageViewForIndex:(NSInteger)pageIndex
 {
-    // TODO enhance by replacing it with a captioned photo view
-    return [self.photoAlbumView pagingScrollView:pagingScrollView pageViewForIndex:pageIndex];
+    UIView<NIPagingScrollViewPage> *pageView;
+
+    NSString *caption = [self.imageAlbumView captionForImageAtIndex:pageIndex];
+    if (caption == nil || [caption length] == 0) {
+        pageView = [self.photoAlbumView pagingScrollView:pagingScrollView pageViewForIndex:pageIndex];
+    }
+    else {
+        static NSString *reuseIdentifier = @"CaptionedPhotoView";
+
+        pageView = [pagingScrollView dequeueReusablePageWithIdentifier:reuseIdentifier];
+        if (pageView == nil) {
+            pageView = [[CaptionedPhotoView alloc] init];
+            pageView.reuseIdentifier = reuseIdentifier;
+        }
+
+        NIPhotoScrollView *photoScrollView = (NIPhotoScrollView *)pageView;
+        photoScrollView.photoScrollViewDelegate = self.photoAlbumView;
+        photoScrollView.zoomingAboveOriginalSizeIsEnabled = [self.photoAlbumView isZoomingAboveOriginalSizeEnabled];
+
+        CaptionedPhotoView *captionedView = (CaptionedPhotoView *)pageView;
+        captionedView.caption = caption;
+    }
+
+    return pageView;
 }
 
 #pragma mark - NIPhotoAlbumScrollViewDataSource
