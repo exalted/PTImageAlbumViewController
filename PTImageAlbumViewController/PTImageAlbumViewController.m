@@ -227,7 +227,9 @@
         // Try to return the thumbnail image if we can.
         image = [self loadThumbnailImageAtIndex:photoIndex];
 
-        *photoSize = NIPhotoScrollViewPhotoSizeThumbnail;
+        if (image) {
+            *photoSize = NIPhotoScrollViewPhotoSizeThumbnail;
+        }
     }
     
     return image;
