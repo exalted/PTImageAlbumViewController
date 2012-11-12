@@ -20,16 +20,13 @@
 
 @interface PTImageAlbumViewController () <NIPhotoAlbumScrollViewDataSource, NIPhotoScrubberViewDataSource>
 
-@property (nonatomic, assign) NSInteger initialIndex;
+@property (assign, nonatomic) NSInteger initialIndex;
 
 - (UIImage *)loadThumbnailImageAtIndex:(NSInteger)index;
 
 @end
 
 @implementation PTImageAlbumViewController
-
-@synthesize initialIndex = _initialIndex;
-@synthesize imageAlbumView = _imageAlbumView;
 
 - (id)init
 {

@@ -18,7 +18,7 @@
 
 @interface PTImageAlbumView : NIPhotoAlbumScrollView
 
-@property (nonatomic, assign) id<PTImageAlbumViewDataSource> imageAlbumDataSource;
+@property (assign, nonatomic) id<PTImageAlbumViewDataSource> imageAlbumDataSource;
 
 - (NSInteger)numberOfImages;
 

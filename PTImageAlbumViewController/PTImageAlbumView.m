@@ -26,8 +26,6 @@
 
 @implementation PTImageAlbumView
 
-@synthesize imageAlbumDataSource = _imageAlbumDataSource;
-
 #pragma mark - Instance methods
 
 - (NSInteger)numberOfImages
