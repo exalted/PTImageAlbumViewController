@@ -260,19 +260,19 @@
 
 - (NSInteger)numberOfImagesInAlbumView:(PTImageAlbumView *)imageAlbumView
 {
-    NSAssert(NO, @"missing required method implementation 'numberOfItemsInImageAlbumView:'");
+    NSAssert(NO, @"missing required method implementation '- %@'", NSStringFromSelector(_cmd));
     abort();
 }
 
 - (NSString *)imageAlbumView:(PTImageAlbumView *)imageAlbumView sourceForImageAtIndex:(NSInteger)index
 {
-    NSAssert(NO, @"missing required method implementation 'imageAlbumView:sourceForImageAtIndex:'");
+    NSAssert(NO, @"missing required method implementation '- %@'", NSStringFromSelector(_cmd));
     abort();
 }
 
 - (NSString *)imageAlbumView:(PTImageAlbumView *)imageAlbumView sourceForThumbnailImageAtIndex:(NSInteger)index
 {
-    NSAssert(NO, @"missing required method implementation 'imageAlbumView:sourceForThumbnailImageAtIndex:'");
+    NSAssert(NO, @"missing required method implementation '- %@'", NSStringFromSelector(_cmd));
     abort();
 }
 
