@@ -18,9 +18,9 @@
 
 #import <ImageIO/ImageIO.h>
 
-@interface PTImageAlbumView () {
-    NSMutableArray *_cachedData;
-}
+@interface PTImageAlbumView ()
+
+@property (retain, nonatomic) NSMutableArray *cachedData;
 
 @end
 
@@ -30,19 +30,19 @@
 
 - (NSInteger)numberOfImages
 {
-    if (_cachedData == nil) {
+    if (self.cachedData == nil) {
         NSInteger numberOfImages = [self.imageAlbumDataSource numberOfImagesInAlbumView:self];
-        _cachedData = [[NSMutableArray alloc] initWithCapacity:numberOfImages];
+        self.cachedData = [[NSMutableArray alloc] initWithCapacity:numberOfImages];
         for (NSInteger i = 0; i < numberOfImages; i++) {
-            [_cachedData addObject:[NSMutableDictionary dictionary]];
+            [self.cachedData addObject:[NSMutableDictionary dictionary]];
         }
     }
-    return [_cachedData count];
+    return [self.cachedData count];
 }
 
 - (CGSize)sizeForImageAtIndex:(NSInteger)index
 {
-    NSValue *size = [[_cachedData objectAtIndex:index] objectForKey:@"size"];
+    NSValue *size = [[self.cachedData objectAtIndex:index] objectForKey:@"size"];
     if (size == nil) {
         if ([self.imageAlbumDataSource respondsToSelector:@selector(imageAlbumView:sizeForImageAtIndex:)]) {
             size = [NSValue valueWithCGSize:[self.imageAlbumDataSource imageAlbumView:self sizeForImageAtIndex:index]];
@@ -88,7 +88,7 @@
             }
         }
 
-        [[_cachedData objectAtIndex:index] setObject:(size ? size : [NSValue valueWithCGSize:CGSizeZero]) forKey:@"size"];
+        [[self.cachedData objectAtIndex:index] setObject:(size ? size : [NSValue valueWithCGSize:CGSizeZero]) forKey:@"size"];
     }
 
     return [size CGSizeValue];
@@ -96,34 +96,34 @@
 
 - (NSString *)sourceForImageAtIndex:(NSInteger)index
 {
-    id source = [[_cachedData objectAtIndex:index] objectForKey:@"source"];
+    id source = [[self.cachedData objectAtIndex:index] objectForKey:@"source"];
     if (source == nil) {
         source = [self.imageAlbumDataSource imageAlbumView:self sourceForImageAtIndex:index];
-        [[_cachedData objectAtIndex:index] setObject:(source ? source : [NSNull null]) forKey:@"source"];
+        [[self.cachedData objectAtIndex:index] setObject:(source ? source : [NSNull null]) forKey:@"source"];
     }
     return source == [NSNull null] ? nil : source;
 }
 
 - (NSString *)sourceForThumbnailImageAtIndex:(NSInteger)index
 {
-    id source = [[_cachedData objectAtIndex:index] objectForKey:@"thumbnailSource"];
+    id source = [[self.cachedData objectAtIndex:index] objectForKey:@"thumbnailSource"];
     if (source == nil) {
         source = [self.imageAlbumDataSource imageAlbumView:self sourceForThumbnailImageAtIndex:index];
-        [[_cachedData objectAtIndex:index] setObject:(source ? source : [NSNull null]) forKey:@"thumbnailSource"];
+        [[self.cachedData objectAtIndex:index] setObject:(source ? source : [NSNull null]) forKey:@"thumbnailSource"];
     }
     return source == [NSNull null] ? nil : source;
 }
 
 - (NSString *)captionForImageAtIndex:(NSInteger)index
 {
-    id caption = [[_cachedData objectAtIndex:index] objectForKey:@"imageCaption"];
+    id caption = [[self.cachedData objectAtIndex:index] objectForKey:@"imageCaption"];
     if (caption == nil) {
         if ([self.imageAlbumDataSource respondsToSelector:@selector(imageAlbumView:captionForImageAtIndex:)]) {
             caption = [self.imageAlbumDataSource imageAlbumView:self captionForImageAtIndex:index];
-            [[_cachedData objectAtIndex:index] setObject:(caption ? caption : [NSNull null]) forKey:@"imageCaption"];
+            [[self.cachedData objectAtIndex:index] setObject:(caption ? caption : [NSNull null]) forKey:@"imageCaption"];
         }
         else {
-            [[_cachedData objectAtIndex:index] setObject:[NSNull null] forKey:@"imageCaption"];
+            [[self.cachedData objectAtIndex:index] setObject:[NSNull null] forKey:@"imageCaption"];
         }
     }
     return caption == [NSNull null] ? nil : caption;

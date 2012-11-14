@@ -33,9 +33,9 @@
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
         // Custom initialization
-        _initialIndex = 0;
-        _imageAlbumView = [[PTImageAlbumView alloc] init];
-        _imageAlbumView.imageAlbumDataSource = self;
+        self.initialIndex = 0;
+        self.imageAlbumView = [[PTImageAlbumView alloc] init];
+        self.imageAlbumView.imageAlbumDataSource = self;
     }
     return self;
 }
@@ -45,7 +45,7 @@
     self = [self init];
     if (self) {
         // Custom initialization
-        _initialIndex = index;
+        self.initialIndex = index;
     }
     return self;
 }
