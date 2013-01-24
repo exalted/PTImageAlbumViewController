@@ -14,14 +14,13 @@
 // limitations under the License.
 //
 
-#import "NetworkPhotoAlbumViewController.h"
+#import <Foundation/Foundation.h>
 
-#import "PTImageAlbumView.h"
+@class PTImageAlbumView;
 
-@interface PTImageAlbumViewController : NetworkPhotoAlbumViewController <PTImageAlbumViewDelegate, PTImageAlbumViewDataSource>
+@protocol PTImageAlbumViewDelegate <NSObject>
 
-@property (retain, nonatomic) PTImageAlbumView *imageAlbumView;
-
-- (id)initWithImageAtIndex:(NSInteger)index;
+@optional
+- (void)imageAlbumView:(PTImageAlbumView *)imageAlbumView didChangeImageAtIndex:(NSInteger)index;
 
 @end

@@ -194,6 +194,7 @@
 		508F81F514EE763A0002881F /* PTDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTDemoViewController.m; sourceTree = "<group>"; };
 		50918CD814F50E900005AD9C /* SDURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDURLCache.h; path = ../../Libraries/SDURLCache/SDURLCache.h; sourceTree = "<group>"; };
 		50918CD914F50E900005AD9C /* SDURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDURLCache.m; path = ../../Libraries/SDURLCache/SDURLCache.m; sourceTree = "<group>"; };
+		50B6F3B516B04F02004F4918 /* PTImageAlbumViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTImageAlbumViewDelegate.h; sourceTree = "<group>"; };
 		50C0085B15FDFCB900A3B951 /* CaptionedPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CaptionedPhotoView.h; path = ../../Libraries/nimbus/examples/photos/NetworkPhotoAlbums/src/CaptionedPhotoView.h; sourceTree = "<group>"; };
 		50C0085C15FDFCB900A3B951 /* CaptionedPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CaptionedPhotoView.m; path = ../../Libraries/nimbus/examples/photos/NetworkPhotoAlbums/src/CaptionedPhotoView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -334,6 +335,7 @@
 				505AE92D14ED707500BBFC05 /* PTImageAlbumViewController.m */,
 				508F7CE814EE9318000140D6 /* PTImageAlbumView.h */,
 				508F7CE914EE9318000140D6 /* PTImageAlbumView.m */,
+				50B6F3B516B04F02004F4918 /* PTImageAlbumViewDelegate.h */,
 				508F7CEB14EE93C5000140D6 /* PTImageAlbumViewDataSource.h */,
 			);
 			name = PTImageAlbumViewController;
