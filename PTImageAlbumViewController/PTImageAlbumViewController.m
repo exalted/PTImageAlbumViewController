@@ -18,7 +18,7 @@
 
 #import "CaptionedPhotoView.h"
 
-@interface PTImageAlbumViewController () <NIPhotoAlbumScrollViewDataSource, NIPhotoScrubberViewDataSource>
+@interface PTImageAlbumViewController () <NIPhotoAlbumScrollViewDelegate, NIPhotoAlbumScrollViewDataSource, NIPhotoScrubberViewDataSource>
 
 @property (assign, nonatomic) NSInteger initialIndex;
 
@@ -35,6 +35,7 @@
         // Custom initialization
         self.initialIndex = 0;
         self.imageAlbumView = [[PTImageAlbumView alloc] init];
+        self.imageAlbumView.imageAlbumDelegate = self;
         self.imageAlbumView.imageAlbumDataSource = self;
     }
     return self;
@@ -146,6 +147,15 @@
     }
     
     return image;
+}
+
+#pragma mark - NIPagingScrollViewDelegate
+
+- (void)pagingScrollViewDidChangePages:(NIPagingScrollView *)pagingScrollView
+{
+    if ([self.imageAlbumView.imageAlbumDelegate respondsToSelector:@selector(imageAlbumView:didChangeImageAtIndex:)]) {
+        [self.imageAlbumView.imageAlbumDelegate imageAlbumView:self.imageAlbumView didChangeImageAtIndex:pagingScrollView.centerPageIndex];
+    }
 }
 
 #pragma mark - NIPagingScrollViewDataSource
