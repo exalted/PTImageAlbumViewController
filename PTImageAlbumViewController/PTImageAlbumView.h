@@ -14,10 +14,12 @@
 // limitations under the License.
 //
 
+#import "PTImageAlbumViewDelegate.h"
 #import "PTImageAlbumViewDataSource.h"
 
 @interface PTImageAlbumView : NIPhotoAlbumScrollView
 
+@property (assign, nonatomic) id<PTImageAlbumViewDelegate> imageAlbumDelegate;
 @property (assign, nonatomic) id<PTImageAlbumViewDataSource> imageAlbumDataSource;
 
 - (NSInteger)numberOfImages;
