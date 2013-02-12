@@ -129,4 +129,9 @@
     return caption == [NSNull null] ? nil : caption;
 }
 
+- (void)reloadData
+{
+    self.cachedData = nil;
+}
+
 @end
