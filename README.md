@@ -2,7 +2,7 @@ How To Get It
 =============
 
 ```bash
-$ git clone --recursive git://github.com/exalted/PTImageAlbumViewController.git PTImageAlbumViewController-exalted
+$ git clone --recursive https://github.com/exalted/PTImageAlbumViewController.git PTImageAlbumViewController-exalted
 $ open PTImageAlbumViewController-exalted/Examples/AlbumDemo/AlbumDemo.xcodeproj
 ```
 
