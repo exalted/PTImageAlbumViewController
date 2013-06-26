@@ -2,11 +2,8 @@ How To Get It
 =============
 
 ```bash
-$ cd <somewhere>
-$ git clone git://github.com/exalted/PTImageAlbumViewController.git PTImageAlbumViewController-exalted
-$ cd PTImageAlbumViewController-exalted/
-$ git submodule update --init --recursive
-$ open Examples/AlbumDemo/AlbumDemo.xcodeproj
+$ git clone --recursive git://github.com/exalted/PTImageAlbumViewController.git PTImageAlbumViewController-exalted
+$ open PTImageAlbumViewController-exalted/Examples/AlbumDemo/AlbumDemo.xcodeproj
 ```
 
 Sample Code
