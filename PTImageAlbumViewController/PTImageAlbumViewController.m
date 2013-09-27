@@ -153,6 +153,7 @@
 
 - (void)pagingScrollViewDidChangePages:(NIPagingScrollView *)pagingScrollView
 {
+    [super pagingScrollViewDidChangePages:pagingScrollView];
     if ([self.imageAlbumView.imageAlbumDelegate respondsToSelector:@selector(imageAlbumView:didChangeImageAtIndex:)]) {
         [self.imageAlbumView.imageAlbumDelegate imageAlbumView:self.imageAlbumView didChangeImageAtIndex:pagingScrollView.centerPageIndex];
     }
