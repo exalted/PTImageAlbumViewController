@@ -16,7 +16,7 @@
 
 #import "PTImageAlbumViewController.h"
 
-#import "CaptionedPhotoView.h"
+#import "PT_CaptionedPhotoView.h"
 
 @interface PTImageAlbumViewController () <NIPhotoAlbumScrollViewDelegate, NIPhotoAlbumScrollViewDataSource, NIPhotoScrubberViewDataSource>
 
@@ -179,7 +179,7 @@
 
         pageView = [pagingScrollView dequeueReusablePageWithIdentifier:reuseIdentifier];
         if (pageView == nil) {
-            pageView = [[CaptionedPhotoView alloc] init];
+            pageView = [[PT_CaptionedPhotoView alloc] init];
             pageView.reuseIdentifier = reuseIdentifier;
         }
 
@@ -187,7 +187,7 @@
         photoScrollView.photoScrollViewDelegate = self.photoAlbumView;
         photoScrollView.zoomingAboveOriginalSizeIsEnabled = [self.photoAlbumView isZoomingAboveOriginalSizeEnabled];
 
-        CaptionedPhotoView *captionedView = (CaptionedPhotoView *)pageView;
+        PT_CaptionedPhotoView *captionedView = (PT_CaptionedPhotoView *)pageView;
         captionedView.caption = caption;
     }
 
@@ -248,7 +248,7 @@
     for (NIOperation *op in self.queue.operations) {
         if (op.tag == photoIndex) {
             [op cancel];
-            
+
             [self didCancelRequestWithPhotoSize:NIPhotoScrollViewPhotoSizeOriginal
                                      photoIndex:photoIndex];
         }

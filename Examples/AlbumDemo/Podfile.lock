@@ -1,0 +1,58 @@
+PODS:
+  - JSONKit (1.5pre)
+  - Nimbus (0.9.3):
+    - Nimbus/AttributedLabel
+    - Nimbus/Core
+    - Nimbus/CSS
+    - Nimbus/Interapp
+    - Nimbus/Launcher
+    - Nimbus/Models
+    - Nimbus/NetworkControllers
+    - Nimbus/NetworkImage
+    - Nimbus/Operations
+    - Nimbus/Overview
+    - Nimbus/PagingScrollView
+    - Nimbus/Photos
+    - Nimbus/WebController
+  - Nimbus/AttributedLabel (0.9.3):
+    - Nimbus/Core
+  - Nimbus/Core (0.9.3)
+  - Nimbus/CSS (0.9.3):
+    - Nimbus/Core
+  - Nimbus/Interapp (0.9.3):
+    - Nimbus/Core
+  - Nimbus/Launcher (0.9.3):
+    - Nimbus/Core
+  - Nimbus/Models (0.9.3):
+    - Nimbus/Core
+  - Nimbus/NetworkControllers (0.9.3):
+    - Nimbus/Core
+  - Nimbus/NetworkImage (0.9.3):
+    - Nimbus/Core
+  - Nimbus/Operations (0.9.3):
+    - Nimbus/Core
+    - Nimbus/Operations/JSON
+  - Nimbus/Operations/JSON (0.9.3):
+    - JSONKit
+    - Nimbus/Core
+  - Nimbus/Overview (0.9.3):
+    - Nimbus/Core
+  - Nimbus/PagingScrollView (0.9.3):
+    - Nimbus/Core
+  - Nimbus/Photos (0.9.3):
+    - Nimbus/Core
+    - Nimbus/PagingScrollView
+  - Nimbus/WebController (0.9.3):
+    - Nimbus/Core
+  - SDURLCache (1.2)
+
+DEPENDENCIES:
+  - Nimbus (~> 0.9.3)
+  - SDURLCache (~> 1.2)
+
+SPEC CHECKSUMS:
+  JSONKit: 409734ab3407fce90ef7eaa95d7168f38d9a6601
+  Nimbus: ae656df29167efecb120d46bfaadce32c90c19ac
+  SDURLCache: cf4dcdd0d01473c334e9338e82a8733de156ef15
+
+COCOAPODS: 0.27.1

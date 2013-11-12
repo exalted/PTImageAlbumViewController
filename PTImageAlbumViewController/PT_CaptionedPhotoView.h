@@ -1,11 +1,11 @@
 //
-// Copyright (C) 2012 Ali Servet Donmez. All rights reserved.
+// Copyright 2011 Jeff Verkoeyen
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// http://www.apache.org/licenses/LICENSE-2.0
+//    http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,14 +14,16 @@
 // limitations under the License.
 //
 
-#import "PT_NetworkPhotoAlbumViewController.h"
+#import <UIKit/UIKit.h>
 
-#import "PTImageAlbumView.h"
+/**
+ * A subclass of NIPhotoScrollView that shows a caption beneath the picture.
+ *
+ * This class is purposefully lightweight and simply presents the caption without providing
+ * any means of configuring the caption. This is left as an exercise to the developer.
+ */
+@interface PT_CaptionedPhotoView : NIPhotoScrollView
 
-@interface PTImageAlbumViewController : PT_NetworkPhotoAlbumViewController <PTImageAlbumViewDelegate, PTImageAlbumViewDataSource>
-
-@property (retain, nonatomic) PTImageAlbumView *imageAlbumView;
-
-- (id)initWithImageAtIndex:(NSInteger)index;
+@property (nonatomic, readwrite, copy) NSString* caption;
 
 @end

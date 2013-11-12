@@ -1,0 +1,5 @@
+inhibit_all_warnings!
+
+pod 'Nimbus', '~> 0.9.3'
+
+pod 'SDURLCache', '~> 1.2'

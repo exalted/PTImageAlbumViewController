@@ -1,10 +1,41 @@
-How To Get It
-=============
+How To Get
+==========
 
-```bash
-$ git clone --recursive https://github.com/exalted/PTImageAlbumViewController.git PTImageAlbumViewController-exalted
-$ open PTImageAlbumViewController-exalted/Examples/AlbumDemo/AlbumDemo.xcodeproj
-```
+1. Install dependency: [Nimbus](https://github.com/jverkoey/nimbus)
+2. Copy `PTImageAlbumViewController` directory into your own project
+3. Build & run
+
+If you have trouble, check out `AlbumDemo` project in `Examples` directory for a working example.
+
+
+Screenshots
+===========
+
+A nice image scrubber, just like in Photos.app by Apple on the iPad.
+
+![A nice image scrubber, just like in Photos.app by Apple on the iPad.](http://exalted.github.com/PTImageAlbumViewController/ss1-iPad.png "A nice image scrubber, just like in Photos.app by Apple on the iPad.")
+![A nice image scrubber, just like in Photos.app by Apple on the iPad.](http://exalted.github.com/PTImageAlbumViewController/ss1-iPhone.png "A nice image scrubber, just like in Photos.app by Apple on the iPad.")
+
+One tap on the screen and all the chrome goes away!
+
+![One tap on the screen and all the chrome goes away!](http://exalted.github.com/PTImageAlbumViewController/ss2-iPad.png "One tap on the screen and all the chrome goes away!")
+![One tap on the screen and all the chrome goes away!](http://exalted.github.com/PTImageAlbumViewController/ss2-iPhone.png "One tap on the screen and all the chrome goes away!")
+
+Double tap to fit to screen by zooming in...
+
+![Double tap to fit to screen by zooming in...](http://exalted.github.com/PTImageAlbumViewController/ss3-iPad.png "Double tap to fit to screen by zooming in...")
+![Double tap to fit to screen by zooming in...](http://exalted.github.com/PTImageAlbumViewController/ss3-iPhone.png "Double tap to fit to screen by zooming in...")
+
+Flip from one image to another with multi–touch gestures you already know and love.
+
+![Flip from one image to another with multi–touch gestures you already know and love.](http://exalted.github.com/PTImageAlbumViewController/ss4-iPad.png "Flip from one image to another with multi–touch gestures you already know and love.")
+![Flip from one image to another with multi–touch gestures you already know and love.](http://exalted.github.com/PTImageAlbumViewController/ss4-iPhone.png "Flip from one image to another with multi–touch gestures you already know and love.")
+
+Pinch to zoom in and out to take a much closer look.
+
+![Pinch to zoom in and out to take a much closer look.](http://exalted.github.com/PTImageAlbumViewController/ss5-iPad.png "Pinch to zoom in and out to take a much closer look.")
+![Pinch to zoom in and out to take a much closer look.](http://exalted.github.com/PTImageAlbumViewController/ss5-iPhone.png "Pinch to zoom in and out to take a much closer look.")
+
 
 Sample Code
 ===========
@@ -59,30 +90,23 @@ Sample Code
 @end
 ```
 
-Screenshots
-===========
 
-A nice image scrubber, just like in Photos.app by Apple on the iPad.
+How To Contribute
+=================
 
-![A nice image scrubber, just like in Photos.app by Apple on the iPad.](http://exalted.github.com/PTImageAlbumViewController/ss1-iPad.png "A nice image scrubber, just like in Photos.app by Apple on the iPad.")
-![A nice image scrubber, just like in Photos.app by Apple on the iPad.](http://exalted.github.com/PTImageAlbumViewController/ss1-iPhone.png "A nice image scrubber, just like in Photos.app by Apple on the iPad.")
+This project uses [CocoaPods](http://cocoapods.org) to manage dependencies. Installing it is as easy as running the following commands in the terminal:
 
-One tap on the screen and all the chrome goes away!
+```bash
+$ sudo gem install cocoapods
+```
 
-![One tap on the screen and all the chrome goes away!](http://exalted.github.com/PTImageAlbumViewController/ss2-iPad.png "One tap on the screen and all the chrome goes away!")
-![One tap on the screen and all the chrome goes away!](http://exalted.github.com/PTImageAlbumViewController/ss2-iPhone.png "One tap on the screen and all the chrome goes away!")
+If you have any trouble during the installation, please read [CocoaPods documentation](http://docs.cocoapods.org/).
 
-Double tap to fit to screen by zooming in...
+When you've installed CocoaPods, then:
 
-![Double tap to fit to screen by zooming in...](http://exalted.github.com/PTImageAlbumViewController/ss3-iPad.png "Double tap to fit to screen by zooming in...")
-![Double tap to fit to screen by zooming in...](http://exalted.github.com/PTImageAlbumViewController/ss3-iPhone.png "Double tap to fit to screen by zooming in...")
-
-Flip from one image to another with multi–touch gestures you already know and love.
-
-![Flip from one image to another with multi–touch gestures you already know and love.](http://exalted.github.com/PTImageAlbumViewController/ss4-iPad.png "Flip from one image to another with multi–touch gestures you already know and love.")
-![Flip from one image to another with multi–touch gestures you already know and love.](http://exalted.github.com/PTImageAlbumViewController/ss4-iPhone.png "Flip from one image to another with multi–touch gestures you already know and love.")
-
-Pinch to zoom in and out to take a much closer look.
-
-![Pinch to zoom in and out to take a much closer look.](http://exalted.github.com/PTImageAlbumViewController/ss5-iPad.png "Pinch to zoom in and out to take a much closer look.")
-![Pinch to zoom in and out to take a much closer look.](http://exalted.github.com/PTImageAlbumViewController/ss5-iPhone.png "Pinch to zoom in and out to take a much closer look.")
+```bash
+$ git clone https://github.com/exalted/PTImageAlbumViewController.git PTImageAlbumViewController-exalted
+$ cd PTImageAlbumViewController-exalted/Examples/AlbumDemo/
+$ pod install
+$ open AlbumDemo.xcworkspace
+```
