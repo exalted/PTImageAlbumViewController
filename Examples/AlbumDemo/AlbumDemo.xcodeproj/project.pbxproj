@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5001D52D18321B620074C146 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5001D52C18321B620074C146 /* Default-568h@2x.png */; };
 		504A4BDA15908BE100B8FBBE /* NICommonMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 504A4BAE15908BE100B8FBBE /* NICommonMetrics.m */; };
 		504A4BDB15908BE100B8FBBE /* NIDataStructures.m in Sources */ = {isa = PBXBuildFile; fileRef = 504A4BB015908BE100B8FBBE /* NIDataStructures.m */; };
 		504A4BDC15908BE100B8FBBE /* NIDebuggingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 504A4BB215908BE100B8FBBE /* NIDebuggingTools.m */; };
@@ -66,6 +67,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5001D52C18321B620074C146 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		504A4BAC15908BE100B8FBBE /* NIBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIBlocks.h; path = ../../Libraries/nimbus/src/core/src/NIBlocks.h; sourceTree = "<group>"; };
 		504A4BAD15908BE100B8FBBE /* NICommonMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICommonMetrics.h; path = ../../Libraries/nimbus/src/core/src/NICommonMetrics.h; sourceTree = "<group>"; };
 		504A4BAE15908BE100B8FBBE /* NICommonMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICommonMetrics.m; path = ../../Libraries/nimbus/src/core/src/NICommonMetrics.m; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 		505AE86F14ED648D00BBFC05 = {
 			isa = PBXGroup;
 			children = (
+				5001D52C18321B620074C146 /* Default-568h@2x.png */,
 				505AE88414ED648D00BBFC05 /* AlbumDemo */,
 				505AE89914ED64ED00BBFC05 /* PTImageAlbumViewController */,
 				505AE8AD14ED6EF500BBFC05 /* Libraries */,
@@ -518,6 +521,7 @@
 				505AE88914ED648D00BBFC05 /* InfoPlist.strings in Resources */,
 				504A4C0C15908C4500B8FBBE /* NimbusPhotos.bundle in Resources */,
 				504A4C2C15908D7E00B8FBBE /* NimbusOverviewer.bundle in Resources */,
+				5001D52D18321B620074C146 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
