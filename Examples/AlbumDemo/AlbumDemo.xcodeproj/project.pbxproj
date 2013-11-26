@@ -24,7 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5001D52C18321B620074C146 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		5001D52C18321B620074C146 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		505839AB1590CEF1007C9675 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		505AE87A14ED648D00BBFC05 /* AlbumDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlbumDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		505AE87E14ED648D00BBFC05 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -71,7 +71,6 @@
 		505AE86F14ED648D00BBFC05 = {
 			isa = PBXGroup;
 			children = (
-				5001D52C18321B620074C146 /* Default-568h@2x.png */,
 				505AE88414ED648D00BBFC05 /* AlbumDemo */,
 				505AE89914ED64ED00BBFC05 /* PTImageAlbumViewController */,
 				505AE87D14ED648D00BBFC05 /* Frameworks */,
@@ -119,6 +118,7 @@
 				505AE88714ED648D00BBFC05 /* InfoPlist.strings */,
 				505AE88A14ED648D00BBFC05 /* main.m */,
 				505AE88C14ED648D00BBFC05 /* AlbumDemo-Prefix.pch */,
+				5001D52C18321B620074C146 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
