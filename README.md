@@ -1,9 +1,30 @@
 How To Get
 ==========
 
-1. Install dependency: [Nimbus](https://github.com/jverkoey/nimbus)
-2. Copy `PTImageAlbumViewController` directory into your own project
-3. Build & run
+### 1. Install dependency: [Nimbus](https://github.com/jverkoey/nimbus)
+
+If your project uses [CocoaPods](http://cocoapods.org) to manage its dependencies, easiest way to do it is to add the following in your `Podfile`:
+
+```ruby
+pod 'Nimbus/Photos', :podspec => 'https://gist.github.com/exalted/7655606/raw/ce27220c457984ecd30fb800503b4c299159ace0/Nimbus.podspec'
+```
+
+### 2. Copy `PTImageAlbumViewController` directory into your own project
+
+Instead of manually downloading files, you could use git submodules:
+
+```bash
+git submodule add https://github.com/exalted/PTImageAlbumViewController.git
+```
+
+### 3. `#import` headers
+
+```objectivec
+#import <Nimbus/NimbusCore.h>
+#import <Nimbus/NimbusPhotos.h>
+```
+
+### 4. Build & run
 
 If you have trouble, check out `AlbumDemo` project in `Examples` directory for a working example.
 
