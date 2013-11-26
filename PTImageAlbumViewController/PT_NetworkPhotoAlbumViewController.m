@@ -16,18 +16,6 @@
 
 #import "PT_NetworkPhotoAlbumViewController.h"
 
-#import "NIOverviewMemoryCacheController.h"
-#import "NimbusOverview.h"
-#import "NIOverviewView.h"
-#import "NIOverviewPageView.h"
-
-#ifdef DEBUG
-@interface PT_NetworkPhotoAlbumViewController()
-@property (nonatomic, readwrite, retain) NIOverviewMemoryCachePageView* highQualityPage;
-@property (nonatomic, readwrite, retain) NIOverviewMemoryCachePageView* thumbnailPage;
-@end
-#endif
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -36,11 +24,6 @@
 @synthesize highQualityImageCache = _highQualityImageCache;
 @synthesize thumbnailImageCache = _thumbnailImageCache;
 @synthesize queue = _queue;
-#ifdef DEBUG
-@synthesize highQualityPage = _highQualityPage;
-
-@synthesize thumbnailPage = _thumbnailPage;
-#endif
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,11 +32,6 @@
     request.delegate = nil;
   }
   [_queue cancelAllOperations];
-
-#ifdef DEBUG
-  [[NIOverview view] removePageView:self.highQualityPage];
-  [[NIOverview view] removePageView:self.thumbnailPage];
-#endif
 }
 
 
@@ -198,13 +176,6 @@
   // Set the default loading image.
   self.photoAlbumView.loadingImage = [UIImage imageWithContentsOfFile:
                                       NIPathForBundleResource(nil, @"NimbusPhotos.bundle/gfx/default.png")];
-
-#ifdef DEBUG
-  self.highQualityPage = [NIOverviewMemoryCachePageView pageWithCache:self.highQualityImageCache];
-  [[NIOverview view] addPageView:self.highQualityPage];
-  self.thumbnailPage = [NIOverviewMemoryCachePageView pageWithCache:self.thumbnailImageCache];
-  [[NIOverview view] addPageView:self.thumbnailPage];
-#endif
 }
 
 
