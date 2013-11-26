@@ -72,7 +72,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
+    // Fix vertical scroll issue
+    // (Ref.: https://github.com/jverkoey/nimbus/issues/438)
+    [self setAutomaticallyAdjustsScrollViewInsets:NO];
+
     // Internal
     self.photoAlbumView.dataSource = self;
     self.photoScrubberView.dataSource = self;
