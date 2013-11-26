@@ -12,7 +12,7 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     ////////////////////////////////////////////////////////////////////////////
-    #import "NimbusCore.h"
-    #import "NimbusPhotos.h"
+    #import <Nimbus/NimbusCore.h>
+    #import <Nimbus/NimbusPhotos.h>
     ////////////////////////////////////////////////////////////////////////////
 #endif
