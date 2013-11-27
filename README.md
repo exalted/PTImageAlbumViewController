@@ -118,7 +118,7 @@ How To Contribute
 This project uses [CocoaPods](http://cocoapods.org) to manage dependencies. Installing it is as easy as running the following commands in the terminal:
 
 ```bash
-$ sudo gem install cocoapods
+sudo gem install cocoapods
 ```
 
 If you have any trouble during the installation, please read [CocoaPods documentation](http://docs.cocoapods.org/).
@@ -126,8 +126,8 @@ If you have any trouble during the installation, please read [CocoaPods document
 When you've installed CocoaPods, then:
 
 ```bash
-$ git clone https://github.com/exalted/PTImageAlbumViewController.git PTImageAlbumViewController-exalted
-$ cd PTImageAlbumViewController-exalted/Examples/AlbumDemo/
-$ pod install
-$ open AlbumDemo.xcworkspace
+git clone https://github.com/exalted/PTImageAlbumViewController.git PTImageAlbumViewController-exalted
+cd PTImageAlbumViewController-exalted/Examples/AlbumDemo/
+pod install
+open AlbumDemo.xcworkspace
 ```
