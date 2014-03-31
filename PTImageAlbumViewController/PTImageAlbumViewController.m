@@ -75,7 +75,9 @@
 
     // Fix vertical scroll issue
     // (Ref.: https://github.com/jverkoey/nimbus/issues/438)
-    [self setAutomaticallyAdjustsScrollViewInsets:NO];
+    if ([self respondsToSelector:@selector(setAutomaticallyAdjustsScrollViewInsets:)]) {
+        [self setAutomaticallyAdjustsScrollViewInsets:NO];
+    }
 
     // Internal
     self.photoAlbumView.dataSource = self;
